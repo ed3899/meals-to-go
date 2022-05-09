@@ -1,5 +1,5 @@
 //% libs
-import {StatusBar} from "expo-status-bar";
+import {StatusBar as ExpoStatusBar} from "expo-status-bar";
 
 import {SafeAreaView} from "react-native-safe-area-context";
 
@@ -27,7 +27,7 @@ export default function App() {
           <Text>List</Text>
         </View>
       </SafeAreaView>
-      <StatusBar style="auto" />
+      <ExpoStatusBar style="auto" />
     </Fragment>
   );
 }
