@@ -1,4 +1,6 @@
 //% libs
+import React from "react";
+
 import {StatusBar as ExpoStatusBar} from "expo-status-bar";
 
 import {SafeAreaView} from "react-native-safe-area-context";
