@@ -1,6 +1,13 @@
 import React from "react";
 
-import { Text } from "react-native";
+import { Text, StyleSheet } from "react-native";
+import { Card } from "react-native-paper";
+
+const styles = StyleSheet.create({
+   card: { backgroundColor: "white" },
+   cover: { padding: 20, backgroundColor: "white" },
+   title: { padding: 16 }
+});
 
 type RestaurantInfoPropsT = {
    restaurant_?: Partial<{
@@ -30,7 +37,16 @@ const RestaurantInfo: React.FC<RestaurantInfoPropsT> = ({
       isClosedTemporarily_
    } = restaurant_;
 
-   return <Text>{name_}</Text>;
+   return (
+      <Card elevation={5} style={styles.card}>
+         <Card.Cover
+            key={name_}
+            style={styles.cover}
+            source={{ uri: photos_[0] }}
+         />
+         <Text style={styles.title}>{name_}</Text>
+      </Card>
+   );
 };
 
 export default RestaurantInfo;
