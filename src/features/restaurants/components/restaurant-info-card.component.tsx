@@ -5,6 +5,7 @@ import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
 import star from "../../../../assets/star";
+import { range } from "../../../../utils";
 import styled from "../../../infrastructure/theme";
 
 const RestaurantCard = styled(Card)`
@@ -59,7 +60,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
       isClosedTemporarily_
    } = restaurant_;
 
-   const ratingArray = new Array(Math.floor(rating_));
+   const ratingArray = range(0, 3, 1);
 
    return (
       <RestaurantCard elevation={5}>
