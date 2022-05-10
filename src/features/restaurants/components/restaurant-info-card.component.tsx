@@ -1,11 +1,14 @@
 import React from "react";
 
-import { Text, StyleSheet } from "react-native";
+import { Text } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
 
+import { ThemeProvider, theme } from "../../../infrastructure/theme";
+
 const RestaurantCard = styled(Card)`
    background-color: white;
+   color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
@@ -47,10 +50,12 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    } = restaurant_;
 
    return (
-      <RestaurantCard elevation={5}>
-         <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
-         <Title>{name_}</Title>
-      </RestaurantCard>
+      <ThemeProvider theme={theme}>
+         <RestaurantCard elevation={5}>
+            <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
+            <Title>{name_}</Title>
+         </RestaurantCard>
+      </ThemeProvider>
    );
 };
 
