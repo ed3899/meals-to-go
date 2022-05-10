@@ -6,6 +6,7 @@ import { SvgXml } from "react-native-svg";
 
 import star from "../../../../assets/star";
 import { range } from "../../../../utils";
+import { genRandomString } from "../../../../utils";
 import styled from "../../../infrastructure/theme";
 
 const RestaurantCard = styled(Card)`
@@ -30,6 +31,12 @@ const Title = styled(Text)`
 
 const Info = styled.View`
    padding: ${(props_) => props_.theme.space[3]};
+`;
+
+const Rating = styled.View`
+   flex-direction: row;
+   padding-top: ${props_ => props_.theme.space[2]};
+   padding-bottom: ${props_ => props_.theme.space[2]};
 `;
 
 type RestaurantInfoPropsT = {
@@ -67,10 +74,16 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
          <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
          <Info>
             <Title>{name_}</Title>
-            {ratingArray.map(() => (
-               <SvgXml xml={star} width={20} height={20} />
-            ))}
-            <SvgXml xml={star} width={20} height={20} />
+            <Rating>
+               {ratingArray.map(() => (
+                  <SvgXml
+                     xml={star}
+                     width={20}
+                     height={20}
+                     key={genRandomString(13)}
+                  />
+               ))}
+            </Rating>
             <Address>{address_}</Address>
          </Info>
       </RestaurantCard>
