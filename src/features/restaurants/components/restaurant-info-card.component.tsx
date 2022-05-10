@@ -2,7 +2,9 @@ import React from "react";
 
 import { Text } from "react-native";
 import { Card } from "react-native-paper";
+import { SvgXml } from "react-native-svg";
 
+import star from "../../../../assets/star";
 import styled from "../../../infrastructure/theme";
 
 const RestaurantCard = styled(Card)`
@@ -57,11 +59,17 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
       isClosedTemporarily_
    } = restaurant_;
 
+   const ratingArray = new Array(Math.floor(rating_));
+
    return (
       <RestaurantCard elevation={5}>
          <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
          <Info>
             <Title>{name_}</Title>
+            {ratingArray.map(() => (
+               <SvgXml xml={star} width={20} height={20} />
+            ))}
+            <SvgXml xml={star} width={20} height={20} />
             <Address>{address_}</Address>
          </Info>
       </RestaurantCard>
