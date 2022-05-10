@@ -1,13 +1,10 @@
 //% libs
-import React from "react";
+
+import React, { Fragment } from "react";
 
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-
-import { SafeAreaView } from "react-native-safe-area-context";
-
 import { StyleSheet, Text, View } from "react-native";
-
-import { Fragment } from "react";
+import { SafeAreaView } from "react-native-safe-area-context";
 
 const styles = StyleSheet.create({
    container: {
