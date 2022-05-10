@@ -21,7 +21,7 @@ type RestaurantInfoPropsT = {
    }>;
 };
 
-const RestaurantInfo: React.FC<RestaurantInfoPropsT> = ({
+const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    restaurant_ = {}
 }) => {
    //! Safeguard undefined
@@ -49,4 +49,4 @@ const RestaurantInfo: React.FC<RestaurantInfoPropsT> = ({
    );
 };
 
-export default RestaurantInfo;
+export default RestaurantInfoCard;

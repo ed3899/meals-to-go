@@ -4,7 +4,7 @@ import { View, Text, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import RestaurantInfo from "../components/restaurant-info.component";
+import RestaurantInfoCard from "../components/restaurant-info-card.component";
 
 const styles = StyleSheet.create({
    container: {
@@ -29,7 +29,7 @@ export default function RestaurantsScreen() {
             <Searchbar value="" />
          </View>
          <View style={styles.list}>
-            <RestaurantInfo />
+            <RestaurantInfoCard />
          </View>
       </SafeAreaView>
    );
