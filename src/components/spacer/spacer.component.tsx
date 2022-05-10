@@ -1,59 +1,45 @@
 import React from "react";
 
-import styled from "../../infrastructure/theme";
+import { DefaultTheme } from "styled-components/native";
 
-const TopSmall = styled.View`
-   margin-top: ${(props_) => props_.theme.space[1]};
-`;
+import styled, { theme } from "../../infrastructure/theme";
 
-const TopMedium = styled.View`
-   margin-top: ${(props_) => props_.theme.space[2]};
-`;
+const sizeVariant = {
+   small: 1,
+   medium: 2,
+   large: 3
+};
 
-const TopLarge = styled.View`
-   margin-top: ${(props_) => props_.theme.space[3]};
-`;
-
-const LeftSmall = styled.View`
-   margin-left: ${(props_) => props_.theme.space[1]};
-`;
-
-const LeftMedium = styled.View`
-   margin-left: ${(props_) => props_.theme.space[2]};
-`;
-
-const LeftLarge = styled.View`
-   margin-left: ${(props_) => props_.theme.space[3]};
-`;
+const positionVariant = {
+   top: "marginTop",
+   left: "marginLeft",
+   right: "marginRight",
+   bottom: "marginBottom"
+};
 
 type SpacerPropsT = {
-   variant:
-      | "top.medium"
-      | "top.large"
-      | "left.small"
-      | "left.medium"
-      | "left.large";
+   position: keyof typeof positionVariant;
+   size: keyof typeof sizeVariant;
 };
-const Spacer: React.FC<SpacerPropsT> = ({ variant }) => {
-   switch (variant) {
-      case "top.medium":
-         return <TopMedium />;
 
-      case "top.large":
-         return <TopLarge />;
+const getVariant = function (
+   position_: SpacerPropsT["position"],
+   size_: SpacerPropsT["size"],
+   theme_: DefaultTheme
+) {
+   const sizeIndex = sizeVariant[size_];
+   const property = positionVariant[position_];
+   const value = theme_.space[sizeIndex];
 
-      case "left.small":
-         return <LeftSmall />;
+   return `${property}:${value}`;
+};
 
-      case "left.medium":
-         return <LeftMedium />;
-
-      case "left.large":
-         return <LeftLarge />;
-
-      default:
-         return <TopSmall />;
-   }
+const Spacer: React.FC<SpacerPropsT> = ({ position, size, children }) => {
+   const variant = getVariant(position, size, theme);
+   const ViewVariant = styled.View`
+      ${variant}
+   `;
+   return <ViewVariant>{children}</ViewVariant>;
 };
 
 export default Spacer;

@@ -102,14 +102,18 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
                      <Text style={{ color: "red" }}>CLOSED TEMPORARILY</Text>
                   )}
 
-                  <Spacer variant="left.large" />
-                  {isOpenNow_ && <SvgXml xml={open} width={20} height={20} />}
-                  <Spacer variant="left.large" />
+                  <Spacer position="left" size="large">
+                     {isOpenNow_ && (
+                        <SvgXml xml={open} width={20} height={20} />
+                     )}
+                  </Spacer>
 
-                  <Image
-                     style={{ width: 15, height: 15 }}
-                     source={{ uri: icon_ }}
-                  />
+                  <Spacer position="left" size="large">
+                     <Image
+                        style={{ width: 15, height: 15 }}
+                        source={{ uri: icon_ }}
+                     />
+                  </Spacer>
                </SectionEnd>
             </Section>
 
