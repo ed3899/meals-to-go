@@ -2,7 +2,8 @@ import React from "react";
 
 import { Text } from "react-native";
 import { Card } from "react-native-paper";
-import styled from "styled-components";
+
+import styled from "../../../infrastructure/theme";
 
 const RestaurantCard = styled(Card)`
    background-color: white;
@@ -13,10 +14,19 @@ const RestaurantCardCover = styled(Card.Cover)`
    background-color: white;
 `;
 
+const Address = styled.Text`
+   font-family: ${(props_) => props_.theme.fonts.body};
+   font-size: ${(props_) => props_.theme.fontSizes.caption};
+`;
+
 const Title = styled(Text)`
    font-family: ${(props_) => props_.theme.fonts.body};
-   padding: 16px;
+   font-size: ${(props_) => props_.theme.fontSizes.body};
    color: ${(props_) => props_.theme.colors.ui.error};
+`;
+
+const Info = styled.View`
+   padding: ${(props_) => props_.theme.space[3]};
 `;
 
 type RestaurantInfoPropsT = {
@@ -50,7 +60,10 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    return (
       <RestaurantCard elevation={5}>
          <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
-         <Title>{name_}</Title>
+         <Info>
+            <Title>{name_}</Title>
+            <Address>{address_}</Address>
+         </Info>
       </RestaurantCard>
    );
 };
