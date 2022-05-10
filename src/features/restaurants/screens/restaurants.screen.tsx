@@ -1,36 +1,35 @@
 import React from "react";
 
-import { View, Text, StyleSheet } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
+import styled from "styled-components/native";
 
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 
-const styles = StyleSheet.create({
-   container: {
-      flex: 1,
-      backgroundColor: "#fff"
-   },
-   search: {
-      padding: 16,
-      backgroundColor: "white"
-   },
-   list: {
-      flex: 1,
-      padding: 16,
-      backgroundColor: "blue"
-   }
-});
+const SafeArea = styled(SafeAreaView)`
+   flex: 1;
+   /*! https://github.com/mobinni/MealsToGo/pull/8/files*/
+`;
+
+const SearchContainer = styled.View`
+   padding: 16px;
+`;
+
+const RestaurantListContainer = styled.View`
+   flex: 1;
+   padding: 16px;
+   background-color: blue;
+`;
 
 export default function RestaurantsScreen() {
    return (
-      <SafeAreaView style={styles.container}>
-         <View style={styles.search}>
+      <SafeArea>
+         <SearchContainer>
             <Searchbar value="" />
-         </View>
-         <View style={styles.list}>
+         </SearchContainer>
+         <RestaurantListContainer>
             <RestaurantInfoCard />
-         </View>
-      </SafeAreaView>
+         </RestaurantListContainer>
+      </SafeArea>
    );
 }
