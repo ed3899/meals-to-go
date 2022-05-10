@@ -4,11 +4,8 @@ import { Text } from "react-native";
 import { Card } from "react-native-paper";
 import styled from "styled-components";
 
-import { ThemeProvider, theme } from "../../../infrastructure/theme";
-
 const RestaurantCard = styled(Card)`
    background-color: white;
-   color: ${(props) => props.theme.colors.bg.primary};
 `;
 
 const RestaurantCardCover = styled(Card.Cover)`
@@ -18,7 +15,7 @@ const RestaurantCardCover = styled(Card.Cover)`
 
 const Title = styled(Text)`
    padding: 16px;
-   color: red;
+   color: ${(props_) => props_.theme.colors.ui.error};
 `;
 
 type RestaurantInfoPropsT = {
@@ -50,12 +47,10 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    } = restaurant_;
 
    return (
-      <ThemeProvider theme={theme}>
-         <RestaurantCard elevation={5}>
-            <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
-            <Title>{name_}</Title>
-         </RestaurantCard>
-      </ThemeProvider>
+      <RestaurantCard elevation={5}>
+         <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
+         <Title>{name_}</Title>
+      </RestaurantCard>
    );
 };
 
