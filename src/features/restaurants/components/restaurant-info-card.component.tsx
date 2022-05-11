@@ -1,54 +1,22 @@
 import React from "react";
 
-import { Text, View, Image } from "react-native";
-import { Card } from "react-native-paper";
 import { SvgXml } from "react-native-svg";
 
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
 import { range, genRandomString } from "../../../../utils";
 import Spacer from "../../../components/spacer/spacer.component";
-import styled from "../../../infrastructure/theme";
-
-const RestaurantCard = styled(Card)`
-   background-color: white;
-`;
-
-const RestaurantCardCover = styled(Card.Cover)`
-   padding: 20px;
-   background-color: white;
-`;
-
-const Address = styled.Text`
-   font-family: ${(props_) => props_.theme.fonts.body};
-   font-size: ${(props_) => props_.theme.fontSizes.caption};
-`;
-
-const Title = styled.Text`
-   font-family: ${(props_) => props_.theme.fonts.body};
-   font-size: ${(props_) => props_.theme.fontSizes.body};
-   color: ${(props_) => props_.theme.colors.ui.error};
-`;
-
-const Info = styled.View`
-   padding: ${(props_) => props_.theme.space[3]};
-`;
-
-const Rating = styled.View`
-   flex-direction: row;
-   padding-top: ${(props_) => props_.theme.space[2]};
-   padding-bottom: ${(props_) => props_.theme.space[2]};
-`;
-
-const Section = styled.View`
-   flex-direction: row;
-   align-items: center;
-`;
-const SectionEnd = styled.View`
-   flex: 1;
-   flex-direction: row;
-   justify-content: flex-end;
-`;
+import { CustomText } from "../../../components/typography/text.component";
+import {
+   RestaurantCard,
+   RestaurantCardCover,
+   Address,
+   Info,
+   Rating,
+   Section,
+   SectionEnd,
+   Icon
+} from "./restaurant-info-card.styles";
 
 type RestaurantInfoPropsT = {
    restaurant_?: Partial<{
@@ -84,7 +52,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
       <RestaurantCard elevation={5}>
          <RestaurantCardCover key={name_} source={{ uri: photos_[0] }} />
          <Info>
-            <Title>{name_}</Title>
+            <CustomText variant="label">{name_}</CustomText>
             <Section>
                <Rating>
                   {ratingArray.map(() => (
@@ -99,7 +67,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
 
                <SectionEnd>
                   {isClosedTemporarily_ && (
-                     <Text style={{ color: "red" }}>CLOSED TEMPORARILY</Text>
+                     <CustomText variant="error">CLOSED TEMPORARILY</CustomText>
                   )}
 
                   <Spacer position="left" size="large">
@@ -109,10 +77,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
                   </Spacer>
 
                   <Spacer position="left" size="large">
-                     <Image
-                        style={{ width: 15, height: 15 }}
-                        source={{ uri: icon_ }}
-                     />
+                     <Icon source={{ uri: icon_ }} />
                   </Spacer>
                </SectionEnd>
             </Section>
