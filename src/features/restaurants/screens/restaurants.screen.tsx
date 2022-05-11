@@ -46,7 +46,7 @@ export default function RestaurantsScreen() {
                   </Fragment>
                );
             }}
-            keyExtractor={(item: any) => item.name} //! Fix with data type
+            keyExtractor={(item:any) => item.name} //! Fix with data type
             key={genRandomString(13)}
          />
       </SafeArea>
