@@ -1,8 +1,8 @@
 import React from "react";
 
-import { DefaultTheme } from "styled-components/native";
+import { DefaultTheme, useTheme } from "styled-components/native";
 
-import styled, { theme } from "../../infrastructure/theme";
+import styled from "../../infrastructure/theme";
 
 const sizeVariant = {
    small: 1,
@@ -35,6 +35,7 @@ const getVariant = function (
 };
 
 const Spacer: React.FC<SpacerPropsT> = ({ position, size, children }) => {
+   const theme = useTheme();
    const variant = getVariant(position, size, theme);
    const ViewVariant = styled.View`
       ${variant}
