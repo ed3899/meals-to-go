@@ -46,10 +46,8 @@ export default function RestaurantsScreen() {
                   </Fragment>
                );
             }}
-            keyExtractor={(item) => item.name}
+            keyExtractor={(item: any) => item.name} //! Fix with data type
             key={genRandomString(13)}
-            // eslint-disable-next-line react-native/no-inline-styles
-            contentContainerStyle={{ padding: 16 }}
          />
       </SafeArea>
    );
