@@ -33,7 +33,6 @@ type RestaurantInfoPropsT = {
 const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    restaurant_ = {}
 }) => {
-   //! Safeguard undefined
    const {
       name_ = "Some restaurant",
       icon_ = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
