@@ -1,6 +1,5 @@
 import React, { Fragment } from "react";
 
-import { FlatList } from "react-native";
 import { Searchbar } from "react-native-paper";
 import { SafeAreaView } from "react-native-safe-area-context";
 import styled from "styled-components/native";
@@ -18,13 +17,19 @@ const SearchContainer = styled.View`
    padding: ${(props_) => props_.theme.space[3]};
 `;
 
+const RestaurantList = styled.FlatList.attrs({
+   contentContainerStyle: {
+      padding: 16
+   }
+})``;
+
 export default function RestaurantsScreen() {
    return (
       <SafeArea>
          <SearchContainer>
             <Searchbar value="" />
          </SearchContainer>
-         <FlatList
+         <RestaurantList
             data={[
                { name: "1" },
                { name: "2" },
