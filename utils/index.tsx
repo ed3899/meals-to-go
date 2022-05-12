@@ -1,4 +1,8 @@
+import React from "react";
+
 import { Ionicons } from "@expo/vector-icons";
+import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
+import { RouteProp } from "@react-navigation/native";
 import { getRandomBytes } from "expo-random";
 
 import { TabParamList } from "../@types/navigation";
@@ -25,16 +29,17 @@ export const range = (start: number, stop: number, step: number) =>
 export const genRandomString = (bytes_: number) =>
    getRandomBytes(bytes_).join();
 
-export /**
+/**
  * @abstract Returns the icon based on the route and focused prop of the TabBarIcon
- * @util
+ * @internal
  * @default "md-settings"
  * @param routeName_
  * @returns
  */
-const getIcon = (
+export const getIcon = (
    routeName_?: keyof TabParamList
 ): keyof typeof Ionicons.glyphMap => {
+    // You can return any component that you like here!
    switch (routeName_) {
       case "Restaurants":
          return "md-restaurant";
@@ -45,4 +50,18 @@ const getIcon = (
       default:
          return "md-settings";
    }
+};
+
+export const getBottomTabNavScreenOptions = (
+   route: RouteProp<TabParamList, keyof TabParamList>
+): BottomTabNavigationOptions => {
+   return {
+      tabBarIcon: ({ size, color }) => {
+         return (
+            <Ionicons name={getIcon(route.name)} size={size} color={color} />
+         );
+      },
+      tabBarActiveTintColor: "tomato",
+      tabBarInactiveTintColor: "gray"
+   };
 };

@@ -5,8 +5,9 @@ import {
    useFonts as useOswald,
    Oswald_400Regular
 } from "@expo-google-fonts/oswald";
-import { Ionicons } from "@expo/vector-icons";
-import { createBottomTabNavigator } from "@react-navigation/bottom-tabs";
+import {
+   createBottomTabNavigator
+} from "@react-navigation/bottom-tabs";
 import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { Text } from "react-native";
@@ -16,7 +17,7 @@ import type { TabParamList } from "./@types/navigation";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
-import { getIcon } from "./utils";
+import { getBottomTabNavScreenOptions } from "./utils";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
@@ -47,20 +48,9 @@ export default function App() {
          <ThemeProvider theme={theme}>
             <NavigationContainer>
                <Tab.Navigator
-                  screenOptions={({ route }) => ({
-                     tabBarIcon: ({ color, size }) => {
-                        // You can return any component that you like here!
-                        return (
-                           <Ionicons
-                              name={getIcon(route.name)}
-                              size={size}
-                              color={color}
-                           />
-                        );
-                     },
-                     tabBarActiveTintColor: "tomato",
-                     tabBarInactiveTintColor: "gray"
-                  })}
+                  screenOptions={({ route }) =>
+                     getBottomTabNavScreenOptions(route)
+                  }
                >
                   <Tab.Screen
                      name="Restaurants"
