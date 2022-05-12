@@ -3,9 +3,9 @@ import React, { Fragment } from "react";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 
-import { genRandomString } from "../../../../utils";
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 
 const SearchContainer = styled.View`

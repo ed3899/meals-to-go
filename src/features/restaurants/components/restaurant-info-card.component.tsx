@@ -4,7 +4,7 @@ import { SvgXml } from "react-native-svg";
 
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
-import { range, genRandomString } from "../../../../utils";
+import { range, genRandomString } from "../../../utils";
 import Spacer from "../../../components/spacer/spacer.component";
 import { CustomText } from "../../../components/typography/text.component";
 import {

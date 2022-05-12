@@ -17,7 +17,7 @@ import type { TabParamList } from "./@types/navigation";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
-import { getBottomTabNavScreenOptions } from "./utils";
+import { getBottomTabNavScreenOptions } from "./src/utils";
 
 const Tab = createBottomTabNavigator<TabParamList>();
 
