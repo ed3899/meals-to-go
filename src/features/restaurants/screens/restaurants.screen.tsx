@@ -1,10 +1,11 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useContext } from "react";
 
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 
@@ -19,19 +20,15 @@ const RestaurantList = styled.FlatList.attrs({
 })``;
 
 export default function RestaurantsScreen() {
+   const restaurantContext = useContext(RestaurantContext);
+
    return (
       <SafeArea>
          <SearchContainer>
             <Searchbar value="" />
          </SearchContainer>
          <RestaurantList
-            data={[
-               { name: "1" },
-               { name: "2" },
-               { name: "3" },
-               { name: "4" },
-               { name: "5" }
-            ]}
+            data={restaurantContext.restaurants}
             renderItem={() => {
                return (
                   <Fragment>
