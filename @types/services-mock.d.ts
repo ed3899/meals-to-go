@@ -279,4 +279,8 @@ export type Mock = {
    "37.7749295,-122.4194155": SanFrancisco;
 };
 
-
+export type MockApiResult =
+   | AntwerpResult
+   | TorontoResult
+   | ChicagoResult
+   | SanFranciscoResult;
