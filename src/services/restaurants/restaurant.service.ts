@@ -1,5 +1,6 @@
-import { Mock, MockApiResult } from "../../../@types/services-mock";
+import { RestaurantInfoCard, TransformedCard } from "../../../@types";
 import { mocks } from "./mock";
+import { Mock, MockApiResult } from "./restaurant.service.types";
 
 /**
  * @abstract Request for an external api, defaults to a Mock if no the request fails
@@ -12,7 +13,7 @@ import { mocks } from "./mock";
  * @param location_ 
  * @returns 
  */
-export const restaurantRequest = <T extends keyof Mock>(location_: T) => {
+export const restaurantsRequest = <T extends keyof Mock>(location_: T) => {
    const mock_ = mocks[location_];
 
    return new Promise<Mock[T]>((resolve, reject) => {
@@ -23,17 +24,21 @@ export const restaurantRequest = <T extends keyof Mock>(location_: T) => {
 
 /**
  * @abstract Transforms the restaurant data by mapping and adding extra properties
- * @param results_ 
- * @returns 
+ * @param results_
+ * @returns
  */
 export const restaurantsTransform = <T extends MockApiResult[]>(
    results_: T
-) => {
+): TransformedCard[] => {
    if (!results_) return [];
 
    const mappedResults = results_.map((restaurant) => {
       return {
-         ...restaurant,
+         name: restaurant.name,
+         icon: restaurant.icon,
+         photos: restaurant.photos,
+         address: restaurant.vicinity,
+         rating: restaurant.rating,
          isOpenNow:
             restaurant.opening_hours && restaurant.opening_hours.open_now,
          isClosedTemporarily:

@@ -5,7 +5,7 @@ import { BottomTabNavigationOptions } from "@react-navigation/bottom-tabs";
 import { RouteProp } from "@react-navigation/native";
 import { getRandomBytes } from "expo-random";
 
-import { TabParamList } from "../../@types/navigation";
+import { TabParamList } from "../App";
 
 /**
  * @abstract Generate a range of number from start to stop, with increase step

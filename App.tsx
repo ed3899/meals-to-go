@@ -10,7 +10,7 @@ import { NavigationContainer } from "@react-navigation/native";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 import { Text } from "react-native";
 
-import type { TabParamList } from "./@types/navigation";
+import type { TabParamList } from "./src/App";
 
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";

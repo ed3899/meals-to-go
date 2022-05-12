@@ -4,7 +4,7 @@ import {
    Mock,
    SanFrancisco,
    Toronto
-} from "../../../../@types/services-mock";
+} from "../restaurant.service";
 import antwerp from "./antwerp.json";
 import chicago from "./chicago.json";
 import san_francisco from "./san_francisco.json";

@@ -284,3 +284,5 @@ export type MockApiResult =
    | TorontoResult
    | ChicagoResult
    | SanFranciscoResult;
+
+export type TransformedMockApiResult<T> = MockApiResult & T;

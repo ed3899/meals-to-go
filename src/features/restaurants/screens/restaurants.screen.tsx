@@ -20,7 +20,7 @@ const RestaurantList = styled.FlatList.attrs({
 })``;
 
 export default function RestaurantsScreen() {
-   const restaurantContext = useContext(RestaurantContext);
+   const { error, isLoading, restaurants } = useContext(RestaurantContext);
 
    return (
       <SafeArea>
@@ -28,8 +28,8 @@ export default function RestaurantsScreen() {
             <Searchbar value="" />
          </SearchContainer>
          <RestaurantList
-            data={restaurantContext.restaurants}
-            renderItem={() => {
+            data={restaurants}
+            renderItem={({ item }) => {
                return (
                   <Fragment>
                      <Spacer position="bottom" size="large">

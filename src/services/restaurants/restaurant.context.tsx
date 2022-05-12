@@ -1,9 +1,14 @@
 import React, { useEffect, createContext, useState, useMemo } from "react";
 
-import { restaurantRequest, restaurantsTransform } from "./restaurant.service";
+import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
+import { TransformedMockApiResult } from "./restaurant.service.types";
 
-export const RestaurantContext = createContext<{ restaurants: unknown[] }>({
-   restaurants: []
+export const RestaurantContext = createContext<
+   RestaurantContext<TransformedMockApiResult>
+>({
+   restaurants: [],
+   isLoading: false,
+   error: { error: false, msg: "" }
 });
 
 /**
@@ -12,10 +17,43 @@ export const RestaurantContext = createContext<{ restaurants: unknown[] }>({
  * @returns
  */
 export const RestaurantContextProvider: React.FC = ({ children }) => {
+   const [restaurants, setRestaurants] = useState<
+      ReturnType<typeof restaurantsTransform>
+   >([]);
+   const [isLoading, setIsLoading] = useState(false);
+   const [error, setError] = useState<
+      RestaurantContext<TransformedMockApiResult>["error"]
+   >({ error: false, msg: "" });
+
+   const retrieveRestaurants = () => {
+      setIsLoading(true);
+      setTimeout(() => {
+         restaurantsRequest("37.7749295,-122.4194155")
+            .then((restaurant) => {
+               const transformedRestaurantResults = restaurantsTransform(
+                  restaurant.results
+               );
+               //// Guarding against empty array in the UI
+               setRestaurants(transformedRestaurantResults);
+            })
+            .catch((err) => {
+               setIsLoading(false);
+               setError({ error: true, msg: err });
+            })
+            .finally(() => setIsLoading(false));
+      }, 2000);
+   };
+
+   useEffect(() => {
+      retrieveRestaurants();
+   }, []);
+
    return (
       <RestaurantContext.Provider
          value={{
-            restaurants: [1, 2, 3]
+            restaurants: restaurants,
+            isLoading: isLoading,
+            error: error
          }}
       >
          {children}
