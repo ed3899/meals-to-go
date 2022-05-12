@@ -11,5 +11,5 @@ export const restaurantRequest = <T extends keyof Mock>(location_: T) => {
 };
 
 restaurantRequest("51.219448,4.402464").then((res) => {
-   res;
+   res.results;
 });
