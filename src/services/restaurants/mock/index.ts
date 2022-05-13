@@ -1,10 +1,11 @@
-import {
+import type {
    Antwerp,
    Chicago,
    Mock,
    SanFrancisco,
    Toronto
-} from "../restaurant.service";
+} from "../restaurant.service.types";
+
 import antwerp from "./antwerp.json";
 import chicago from "./chicago.json";
 import san_francisco from "./san_francisco.json";

@@ -2,7 +2,7 @@ import React from "react";
 
 import { SvgXml } from "react-native-svg";
 
-import type { TransformedCard } from "../../../../@types";
+import type { RestaurantInfoCardT } from "../../../../@types";
 
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
@@ -21,7 +21,7 @@ import {
 } from "./restaurant-info-card.styles";
 
 type RestaurantInfoPropsT = {
-   restaurant?: Partial<TransformedCard>;
+   restaurant?: Partial<RestaurantInfoCardT>;
 };
 
 const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
@@ -30,9 +30,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    const {
       name = "Some restaurant",
       icon = "https://maps.gstatic.com/mapfiles/place_api/icons/v1/png_71/lodging-71.png",
-      photos = [
-         "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg"
-      ],
+      photo = "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg",
       address = "100 some random street",
       isOpenNow = true,
       rating = 4,
@@ -41,14 +39,12 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
 
    const ratingArray = range(0, 3, 1);
 
-   const photo_ = photos[0];
-
    return (
       <RestaurantCard elevation={5}>
          <RestaurantCardCover
             key={name}
             source={{
-               uri: "https://www.foodiesfeed.com/wp-content/uploads/2019/06/top-view-for-box-of-2-burgers-home-made-600x899.jpg"
+               uri: photo
             }}
          />
          <Info>

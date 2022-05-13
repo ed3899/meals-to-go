@@ -1,7 +1,7 @@
-export type RestaurantInfoCard<P> = {
+export type RestaurantInfoCard = {
    name: string;
    icon: string | undefined;
-   photos: P;
+   photo: string ;
    address: string;
    rating: number | undefined;
    isOpenNow: boolean | undefined;

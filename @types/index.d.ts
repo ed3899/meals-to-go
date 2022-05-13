@@ -7,10 +7,6 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
-export type TransformedCard = RestaurantContextHelper<
-   RestaurantInfoCard<MockApiResult["photos"]>
->["restaurants"][0];
+export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
-export type RestaurantContextT = RestaurantContextHelper<TransformedCard>
-
-export { RestaurantInfoCard, Mock, MockApiResult };
+export { RestaurantInfoCard as RestaurantInfoCardT, Mock, MockApiResult };

@@ -2,6 +2,7 @@ import React, { useEffect, createContext, useState, useMemo } from "react";
 
 import type { RestaurantContextT } from "../../../@types";
 
+import { mockImages } from "./mock";
 import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
 
 export const RestaurantContext = createContext<RestaurantContextT>({
@@ -29,14 +30,15 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
       setIsLoading(true);
       setTimeout(() => {
          restaurantsRequest("37.7749295,-122.4194155")
-            .then((restaurant) => {
+            .then(restaurant => {
                const transformedRestaurantResults = restaurantsTransform(
-                  restaurant.results
+                  restaurant.results,
+                  mockImages
                );
                //// Guarding against empty array in the UI
                setRestaurants(transformedRestaurantResults);
             })
-            .catch((err) => {
+            .catch(err => {
                setIsLoading(false);
                setError({ error: true, msg: err });
             })

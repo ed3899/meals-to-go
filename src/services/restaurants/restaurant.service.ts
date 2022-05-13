@@ -1,4 +1,4 @@
-import { RestaurantInfoCard, TransformedCard } from "../../../@types";
+import { RestaurantInfoCardT } from "../../../@types";
 import { mocks } from "./mock";
 import { Mock, MockApiResult } from "./restaurant.service.types";
 
@@ -13,7 +13,9 @@ import { Mock, MockApiResult } from "./restaurant.service.types";
  * @param location_ 
  * @returns 
  */
-export const restaurantsRequest = <T extends keyof Mock>(location_: T) => {
+export const restaurantsRequest = <T extends keyof Mock & string>(
+   location_: T
+) => {
    const mock_ = mocks[location_];
 
    return new Promise<Mock[T]>((resolve, reject) => {
@@ -23,20 +25,38 @@ export const restaurantsRequest = <T extends keyof Mock>(location_: T) => {
 };
 
 /**
+ * @abstract Gets a random image
+ * @description Gets a random string from an array of strings
+ * @internal
+ * @param mockImages
+ * @returns
+ */
+const getRandomMockImage = (mockImages: string[]) => {
+   const randomizer = Math.random() * (mockImages.length - 1);
+   const randomImg = mockImages[Math.ceil(randomizer)];
+
+   return randomImg;
+};
+
+/**
  * @abstract Transforms the restaurant data by mapping and adding extra properties
- * @param results_
+ * @param results
+ * @param mockImages
  * @returns
  */
 export const restaurantsTransform = <T extends MockApiResult[]>(
-   results_: T
-): TransformedCard[] => {
-   if (!results_) return [];
+   results: T,
+   mockImages?: string[]
+): RestaurantInfoCardT[] => {
+   if (!results) return [];
 
-   const mappedResults = results_.map((restaurant) => {
+   const thereAreMockImages = mockImages && mockImages.length > 0;
+
+   const mappedResults = results.map(restaurant => {
       return {
          name: restaurant.name,
          icon: restaurant.icon,
-         photos: restaurant.photos,
+         photo: thereAreMockImages ? getRandomMockImage(mockImages) : "",
          address: restaurant.vicinity,
          rating: restaurant.rating,
          isOpenNow:
