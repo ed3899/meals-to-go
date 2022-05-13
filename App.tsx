@@ -15,6 +15,7 @@ import type { TabParamList } from "./src/App";
 import { SafeArea } from "./src/components/utility/safe-area.component";
 import RestaurantsScreen from "./src/features/restaurants/screens/restaurants.screen";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
+import { LocationContextProvider } from "./src/services/location/location.context";
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurant.context";
 import { getBottomTabNavScreenOptions } from "./src/utils";
 
@@ -45,25 +46,30 @@ export default function App() {
    return (
       <Fragment>
          <ThemeProvider theme={theme}>
-            <RestaurantContextProvider>
-               <NavigationContainer>
-                  <Tab.Navigator
-                     screenOptions={({ route }) =>
-                        getBottomTabNavScreenOptions(route)
-                     }
-                  >
-                     <Tab.Screen
-                        name="Restaurants"
-                        component={RestaurantsScreen}
-                     ></Tab.Screen>
-                     <Tab.Screen name="Map" component={MapScreen}></Tab.Screen>
-                     <Tab.Screen
-                        name="Settings"
-                        component={SettingsScreen}
-                     ></Tab.Screen>
-                  </Tab.Navigator>
-               </NavigationContainer>
-            </RestaurantContextProvider>
+            <LocationContextProvider>
+               <RestaurantContextProvider>
+                  <NavigationContainer>
+                     <Tab.Navigator
+                        screenOptions={({ route }) =>
+                           getBottomTabNavScreenOptions(route)
+                        }
+                     >
+                        <Tab.Screen
+                           name="Restaurants"
+                           component={RestaurantsScreen}
+                        ></Tab.Screen>
+                        <Tab.Screen
+                           name="Map"
+                           component={MapScreen}
+                        ></Tab.Screen>
+                        <Tab.Screen
+                           name="Settings"
+                           component={SettingsScreen}
+                        ></Tab.Screen>
+                     </Tab.Navigator>
+                  </NavigationContainer>
+               </RestaurantContextProvider>
+            </LocationContextProvider>
          </ThemeProvider>
          <ExpoStatusBar style="auto" />
       </Fragment>

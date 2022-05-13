@@ -1,3 +1,4 @@
+import type { LocationContext } from "../src/services/location/location.context.types";
 import type {
    LocationGeometry,
    LocationResults,
@@ -12,6 +13,8 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
+import { locations } from "../src/services/location/location.mock";
+
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
 export {
@@ -20,5 +23,6 @@ export {
    MockApiResult,
    LocationGeometry,
    LocationResults,
-   LocationMock
+   LocationMock,
+   LocationContext as LocationContextT
 };

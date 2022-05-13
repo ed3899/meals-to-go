@@ -1,6 +1,4 @@
-import { LocationMock } from "../../../@types";
-
-export const locations: LocationMock = {
+export const locations = {
    antwerp: {
       results: [
          {
@@ -82,3 +80,5 @@ export const locations: LocationMock = {
       ]
    }
 };
+
+type t = keyof typeof locations;

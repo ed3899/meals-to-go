@@ -4,40 +4,42 @@ import { locations } from "./location.mock";
 
 /**
  * @abstract Requests location from MockApi or external if indicated in the second parameter
- * @param searchTerm 
- * @param externalRequest 
- * @returns 
+ * @param searchTerm
+ * @param externalRequest
+ * @returns
  */
-export const locationRequest = <T extends keyof typeof locations | string>(
-   searchTerm: T,
+export const locationRequest = (
+   searchTerm = "san francisco",
    externalRequest = false
 ): Promise<LocationResults> | undefined => {
    const notExternalRequest = () => !externalRequest;
 
+   const lowercasedSearchTerm = searchTerm.toLowerCase();
+
    //? Internal logic for indentyfing if it is an external request
    if (notExternalRequest()) {
       return new Promise((resolve, reject) => {
-         const locationMock = locations[searchTerm as keyof typeof locations];
+         const locationMock =
+            locations[lowercasedSearchTerm as keyof typeof locations];
 
          if (!locationMock) reject("Not found");
 
          resolve(locationMock);
       });
    }
+
+   return new Promise((_, reject) => reject("Undefined response"));
 };
 
 /**
  * @abstract Retrieve the lattitude and longitude of the location if both exists
- * @param locationResults 
- * @returns 
+ * @param locationResults
+ * @returns
  */
 export const locationTransform = (locationResults: LocationResults) => {
-   if (!locationResults.results || locationResults.results.length === 0) return;
+   if (locationResults.results.length === 0) return;
 
    const { geometry } = locationResults.results[0];
-
-   if ((geometry.location && geometry.location.lat) || geometry.location.lng)
-      return;
 
    const {
       location: { lat, lng }

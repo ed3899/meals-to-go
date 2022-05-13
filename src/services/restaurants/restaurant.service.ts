@@ -13,7 +13,7 @@ import { Mock, MockApiResult } from "./restaurant.service.types";
  * @param location_ 
  * @returns 
  */
-export const restaurantsRequest = <T extends keyof Mock & string>(
+export const restaurantsRequest = <T extends keyof Mock & string>( //! Change to accept any string
    location_: T
 ) => {
    const mock_ = mocks[location_];
@@ -23,6 +23,7 @@ export const restaurantsRequest = <T extends keyof Mock & string>(
       resolve(mock_);
    });
 };
+
 
 /**
  * @abstract Gets a random image
