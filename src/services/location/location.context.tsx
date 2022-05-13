@@ -15,17 +15,28 @@ export const LocationContext = createContext<LocationContextT>({
 export const LocationContextProvider: React.FC = ({ children }) => {
    const [location, setLocation] =
       useState<LocationContextT["location"]>("san francisco");
-   const [keyword, setKeyword] = useState<LocationContextT["keyword"]>();
+
+   const [keyword, setKeyword] =
+      useState<LocationContextT["keyword"]>("San Francisco");
+
    const [isLoading, setIsLoading] =
       useState<LocationContextT["isLoading"]>(false);
+
    const [error, setError] = useState<LocationContextT["error"]>({
       isError: false,
       msg: ""
    });
 
-   const onSearch = (searchKeyword?: string) => {
+   /**
+    * @abstract Wrapper around locationRequest, set the state
+    * @requires locationRequest
+    * @param searchKeyword
+    */
+   const onSearch = (searchKeyword: string) => {
       setIsLoading(true);
       setKeyword(searchKeyword);
+
+      if (!searchKeyword.length) return;
 
       //! Fix once Google Api in place
       locationRequest(searchKeyword)
@@ -44,9 +55,9 @@ export const LocationContextProvider: React.FC = ({ children }) => {
          .finally(() => setIsLoading(false));
    };
 
-   useEffect(() => {
-      onSearch(keyword);
-   }, []);
+   //    useEffect(() => {
+   //       onSearch(keyword);
+   //    }, []);
 
    return (
       <LocationContext.Provider

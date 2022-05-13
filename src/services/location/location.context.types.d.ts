@@ -9,5 +9,5 @@ export type LocationContext = {
       | string
       | undefined;
    search: (searchKeyword: string) => void;
-   keyword: string | undefined;
+   keyword: string;
 };

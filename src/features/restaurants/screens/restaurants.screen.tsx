@@ -1,7 +1,6 @@
 import React, { Fragment, useContext } from "react";
 
-import { View } from "react-native";
-import { Searchbar, ActivityIndicator, Colors } from "react-native-paper";
+import { ActivityIndicator, Colors } from "react-native-paper";
 
 import { RestaurantContextT } from "../../../../@types";
 import Spacer from "../../../components/spacer/spacer.component";
@@ -10,10 +9,7 @@ import styled from "../../../infrastructure/theme";
 import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
-
-const SearchContainer = styled.View`
-   padding: ${props_ => props_.theme.space[3]};
-`;
+import Search from "../components/search.component";
 
 const RestaurantList = styled.FlatList.attrs({
    contentContainerStyle: {
@@ -41,9 +37,9 @@ export default function RestaurantsScreen() {
                <Loading size={50} animating color={Colors.blue300} />
             </LoadingContainer>
          )}
-         <SearchContainer>
-            <Searchbar value="" />
-         </SearchContainer>
+
+         <Search />
+
          <RestaurantList
             data={restaurants}
             renderItem={({ item }) => {
