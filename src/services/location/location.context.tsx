@@ -7,14 +7,19 @@ import { locationRequest, locationTransform } from "./location.service";
 export const LocationContext = createContext<LocationContextT>({
    isLoading: false,
    error: { isError: false, msg: "" },
-   location: "",
+   location: {
+      lat: 0,
+      lng: 0
+   },
    search: () => "", //!
    keyword: ""
 });
 
 export const LocationContextProvider: React.FC = ({ children }) => {
-   const [location, setLocation] =
-      useState<LocationContextT["location"]>("san francisco");
+   const [location, setLocation] = useState<LocationContextT["location"]>({
+      lat: 37.7749295,
+      lng: -122.4194155
+   });
 
    const [keyword, setKeyword] =
       useState<LocationContextT["keyword"]>("San Francisco");

@@ -9,15 +9,13 @@ import { locations } from "./location.mock";
  * @returns
  */
 export const locationRequest = (
-   searchTerm = "san francisco",
-   externalRequest = false
-): Promise<LocationResults> | undefined => {
-   const notExternalRequest = () => !externalRequest;
-
+   searchTerm: string,
+   mockTerm?: keyof typeof locations
+): Promise<LocationResults> => {
    const lowercasedSearchTerm = searchTerm.toLowerCase();
 
    //? Internal logic for indentyfing if it is an external request
-   if (notExternalRequest()) {
+   if (mockTerm) {
       return new Promise((resolve, reject) => {
          const locationMock =
             locations[lowercasedSearchTerm as keyof typeof locations];

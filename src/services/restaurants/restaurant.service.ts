@@ -1,29 +1,27 @@
+import type { Mock, MockApiResult } from "./restaurant.service.types";
+
 import { RestaurantInfoCardT } from "../../../@types";
 import { mocks } from "./mock";
-import { Mock, MockApiResult } from "./restaurant.service.types";
 
 /**
- * @abstract Request for an external api, defaults to a Mock if no the request fails
+ * @abstract Request for a location
  * @default type Mock = {
     "51.219448,4.402464": Antwerp;
     "43.653225,-79.383186": Toronto;
     "41.878113,-87.629799": Chicago;
     "37.7749295,-122.4194155": SanFrancisco;
 }
- * @param location_ 
+ * @param location 
  * @returns 
  */
-export const restaurantsRequest = <T extends keyof Mock & string>( //! Change to accept any string
-   location_: T
-) => {
-   const mock_ = mocks[location_];
+export const restaurantsRequest = (location: string) => {
+   const mock_ = mocks[location as keyof Mock];
 
-   return new Promise<Mock[T]>((resolve, reject) => {
+   return new Promise((resolve, reject) => {
       if (!mock_) reject("Not found");
       resolve(mock_);
    });
 };
-
 
 /**
  * @abstract Gets a random image

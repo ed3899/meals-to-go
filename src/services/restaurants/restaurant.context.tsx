@@ -1,9 +1,22 @@
-import React, { useEffect, createContext, useState, useMemo } from "react";
+import React, {
+   useEffect,
+   createContext,
+   useState,
+   useMemo,
+   useContext
+} from "react";
 
 import type { RestaurantContextT } from "../../../@types";
 
+import { LocationContext } from "../location/location.context";
 import { mockImages } from "./mock";
 import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
+import {
+   Antwerp,
+   Chicago,
+   SanFrancisco,
+   Toronto
+} from "./restaurant.service.types";
 
 export const RestaurantContext = createContext<RestaurantContextT>({
    restaurants: [],
@@ -26,13 +39,23 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
       msg: ""
    });
 
-   const retrieveRestaurants = () => {
+   const { location } = useContext(LocationContext);
+
+   const retrieveRestaurants = (loc: string) => {
       setIsLoading(true);
       setTimeout(() => {
-         restaurantsRequest("37.7749295,-122.4194155")
+         //!
+         restaurantsRequest(loc)
             .then(restaurant => {
+               //! Mocking
+               const res = restaurant as
+                  | Antwerp
+                  | Toronto
+                  | Chicago
+                  | SanFrancisco;
+
                const transformedRestaurantResults = restaurantsTransform(
-                  restaurant.results,
+                  res.results,
                   mockImages
                );
                //// Guarding against empty array in the UI
@@ -47,7 +70,10 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
    };
 
    useEffect(() => {
-      retrieveRestaurants();
+      if (location) {
+         const locationString = `${location.lat},${location.lng}`;
+         retrieveRestaurants(locationString);
+      }
    }, []);
 
    return (
