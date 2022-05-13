@@ -3,7 +3,6 @@ import React, { useEffect, createContext, useState, useMemo } from "react";
 import type { RestaurantContextT } from "../../../@types";
 
 import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
-import { TransformedMockApiResult } from "./restaurant.service.types";
 
 export const RestaurantContext = createContext<RestaurantContextT>({
    restaurants: [],

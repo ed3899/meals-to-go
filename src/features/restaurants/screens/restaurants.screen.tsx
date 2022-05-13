@@ -3,6 +3,7 @@ import React, { Fragment, useContext } from "react";
 import { Searchbar } from "react-native-paper";
 import styled from "styled-components/native";
 
+import { RestaurantContextT } from "../../../../@types";
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
@@ -33,7 +34,11 @@ export default function RestaurantsScreen() {
                return (
                   <Fragment>
                      <Spacer position="bottom" size="large">
-                        <RestaurantInfoCard />
+                        <RestaurantInfoCard
+                           restaurant={
+                              item as RestaurantContextT["restaurants"][0]
+                           }
+                        />
                      </Spacer>
                   </Fragment>
                );
