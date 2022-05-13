@@ -14,6 +14,7 @@ export const locationRequest = (
 ): Promise<LocationResults> => {
    const lowercasedSearchTerm = searchTerm.toLowerCase();
 
+   //! Return only the mock for now
    //? Internal logic for indentyfing if it is an external request
    if (mockTerm) {
       return new Promise((resolve, reject) => {
