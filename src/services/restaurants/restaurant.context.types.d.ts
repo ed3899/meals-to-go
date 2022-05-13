@@ -1,5 +1,3 @@
-import { TransformedMockApiResult } from "./restaurant.service.types";
-
 export type RestaurantInfoCard<P> = {
    name: string;
    icon: string | undefined;
@@ -10,7 +8,7 @@ export type RestaurantInfoCard<P> = {
    isClosedTemporarily: boolean;
 };
 
-export type RestaurantContext<R> = {
+export type RestaurantContextHelper<R> = {
    restaurants: R[];
    isLoading: boolean;
    error: { error: boolean; msg: unknown };

@@ -1,11 +1,11 @@
 import React, { useEffect, createContext, useState, useMemo } from "react";
 
+import type { RestaurantContextT } from "../../../@types";
+
 import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
 import { TransformedMockApiResult } from "./restaurant.service.types";
 
-export const RestaurantContext = createContext<
-   RestaurantContext<TransformedMockApiResult>
->({
+export const RestaurantContext = createContext<RestaurantContextT>({
    restaurants: [],
    isLoading: false,
    error: { error: false, msg: "" }
@@ -21,9 +21,10 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
       ReturnType<typeof restaurantsTransform>
    >([]);
    const [isLoading, setIsLoading] = useState(false);
-   const [error, setError] = useState<
-      RestaurantContext<TransformedMockApiResult>["error"]
-   >({ error: false, msg: "" });
+   const [error, setError] = useState<RestaurantContextT["error"]>({
+      error: false,
+      msg: ""
+   });
 
    const retrieveRestaurants = () => {
       setIsLoading(true);
