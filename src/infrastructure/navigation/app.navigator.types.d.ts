@@ -3,13 +3,22 @@ import type {
    CompositeScreenProps,
    NavigatorScreenParams
 } from "@react-navigation/native";
-import type { StackScreenProps } from "@react-navigation/stack";
+import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-export type TabParamList = {
-   Restaurants: undefined;
+import { RestaurantsStackParamListT } from "../../../@types";
+
+export type RootTabParamList = {
+   Restaurants: NavigatorScreenParams<RestaurantsStackParamListT>;
    Map: undefined;
    Settings: undefined;
 };
 
-export type BottomTabsScreenHelper<T extends keyof TabParamList> =
-   BottomTabScreenProps<TabParamList, T>;
+export type RootTabScreenProps<T extends keyof RootTabParamList> =
+   BottomTabScreenProps<RootTabParamList, T>;
+
+export type RestaurantsStackScreenProps<
+   T extends keyof RestaurantsStackParamListT
+> = CompositeScreenProps<
+   NativeStackScreenProps<RestaurantsStackParamListT, T>,
+   RootTabScreenProps<keyof RootTabParamList>
+>;

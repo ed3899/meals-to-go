@@ -8,7 +8,7 @@ import {
 import { NavigationContainer, RouteProp } from "@react-navigation/native";
 import { Text } from "react-native";
 
-import { TabParamListT } from "../../../@types";
+import { RootTabParamListT } from "../../../@types";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import RestaurantsNavigator from "./restaurants.navigator";
 
@@ -20,7 +20,7 @@ import RestaurantsNavigator from "./restaurants.navigator";
  * @returns
  */
 export const getIcon = (
-   routeName_?: keyof TabParamListT
+   routeName_?: keyof RootTabParamListT
 ): keyof typeof Ionicons.glyphMap => {
    // You can return any component that you like here!
    switch (routeName_) {
@@ -48,7 +48,7 @@ export const getIcon = (
   * @returns 
   */
 export function getBottomTabNavScreenOptions(
-   route: RouteProp<TabParamListT, keyof TabParamListT>
+   route: RouteProp<RootTabParamListT, keyof RootTabParamListT>
 ): BottomTabNavigationOptions {
    return {
       tabBarIcon: ({ size, color }) => {
@@ -61,7 +61,7 @@ export function getBottomTabNavScreenOptions(
    };
 }
 
-const Tab = createBottomTabNavigator<TabParamListT>();
+const Tab = createBottomTabNavigator<RootTabParamListT>();
 
 const Settings = () => (
    <SafeArea>

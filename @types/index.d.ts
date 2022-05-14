@@ -1,8 +1,9 @@
 import type {
-   TabParamList,
-   BottomTabsScreenHelper
+   RootTabParamList,
+   RootTabScreenProps,
+   RestaurantsStackScreenProps
 } from "../src/infrastructure/navigation/app.navigator.types";
-import type { StackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
+import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
 import type {
    LocationGeometry,
@@ -28,7 +29,8 @@ export {
    LocationResults,
    LocationMock,
    LocationContext as LocationContextT,
-   TabParamList as TabParamListT,
-   BottomTabsScreenHelper as BottomTabScreenHelperT,
-   StackParamList as StackParamListT
+   RootTabParamList as RootTabParamListT,
+   RestaurantsStackParamList as RestaurantsStackParamListT,
+   RootTabScreenProps as RootTabScreenPropsT,
+   RestaurantsStackScreenProps as RestaurantsStackScreenPropsT
 };

@@ -1,6 +1,9 @@
 import React, { Fragment, useContext } from "react";
 
+import { Pressable } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
+
+import type { RestaurantsStackScreenPropsT } from "../../../../@types";
 
 import { RestaurantContextT } from "../../../../@types";
 import Spacer from "../../../components/spacer/spacer.component";
@@ -27,7 +30,9 @@ const LoadingContainer = styled.View`
    left: 50%;
 `;
 
-export default function RestaurantsScreen() {
+export default function RestaurantsScreen({
+   navigation
+}: RestaurantsStackScreenPropsT<"RestaurantsStack">) {
    const { isLoading, restaurants } = useContext(RestaurantContext);
 
    return (
@@ -45,13 +50,17 @@ export default function RestaurantsScreen() {
             renderItem={({ item }) => {
                return (
                   <Fragment>
-                     <Spacer position="bottom" size="large">
-                        <RestaurantInfoCard
-                           restaurant={
-                              item as RestaurantContextT["restaurants"][0]
-                           }
-                        />
-                     </Spacer>
+                     <Pressable
+                        onPress={() => navigation.navigate("RestaurantDetail")}
+                     >
+                        <Spacer position="bottom" size="large">
+                           <RestaurantInfoCard
+                              restaurant={
+                                 item as RestaurantContextT["restaurants"][0]
+                              }
+                           />
+                        </Spacer>
+                     </Pressable>
                   </Fragment>
                );
             }}

@@ -1,3 +1,4 @@
-export type StackParamList = {
+export type RestaurantsStackParamList = {
    RestaurantsStack: undefined;
+   RestaurantDetail: undefined;
 };
