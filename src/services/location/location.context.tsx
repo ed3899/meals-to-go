@@ -16,9 +16,16 @@ export const LocationContext = createContext<LocationContextT>({
 });
 
 export const LocationContextProvider: React.FC = ({ children }) => {
+   /**
+    * @default type Mock = {
+    "51.219448,4.402464": Antwerp;
+    "43.653225,-79.383186": Toronto;
+    "41.878113,-87.629799": Chicago;
+    "37.7749295,-122.4194155": SanFrancisco;
+    */
    const [location, setLocation] = useState<LocationContextT["location"]>({
-      lat: 37.7749295,
-      lng: -122.4194155
+      lng: 4.402464,
+      lat: 51.219448
    });
 
    const [keyword, setKeyword] =
@@ -41,6 +48,7 @@ export const LocationContextProvider: React.FC = ({ children }) => {
       setIsLoading(true);
       setKeyword(searchKeyword);
 
+      // don't do anything
       if (!searchKeyword.length) return;
 
       //! Fix once Google Api in place
@@ -48,7 +56,8 @@ export const LocationContextProvider: React.FC = ({ children }) => {
          ?.then(locationTransform)
          .then(res => {
             setIsLoading(false);
-            setLocation(res);
+
+            if (res) setLocation(res);
          })
          .catch(error => {
             setIsLoading(false);

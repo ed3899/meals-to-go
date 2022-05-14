@@ -4,30 +4,26 @@ import { locations } from "./location.mock";
 
 /**
  * @abstract Requests location from MockApi or external if indicated in the second parameter
+ * @description Test locations: antwerp , "san francisco", chicago, toronto
+ * @default 
  * @param searchTerm
- * @param externalRequest
  * @returns
  */
 export const locationRequest = (
-   searchTerm: string,
-   mockTerm?: keyof typeof locations
+   searchTerm: string
 ): Promise<LocationResults> => {
    const lowercasedSearchTerm = searchTerm.toLowerCase();
 
    //! Return only the mock for now
    //? Internal logic for indentyfing if it is an external request
-   if (mockTerm) {
-      return new Promise((resolve, reject) => {
-         const locationMock =
-            locations[lowercasedSearchTerm as keyof typeof locations];
+   return new Promise((resolve, reject) => {
+      const locationMock =
+         locations[lowercasedSearchTerm as keyof typeof locations];
 
-         if (!locationMock) reject("Not found");
+      if (!locationMock) reject("Not found");
 
-         resolve(locationMock);
-      });
-   }
-
-   return new Promise((_, reject) => reject("Undefined response"));
+      resolve(locationMock);
+   });
 };
 
 /**

@@ -14,7 +14,9 @@ import { mocks } from "./mock";
  * @param location 
  * @returns 
  */
-export const restaurantsRequest = (location: string) => {
+export const restaurantsRequest = (
+   location: string
+): Promise<Mock[keyof Mock]> => {
    const mock_ = mocks[location as keyof Mock];
 
    return new Promise((resolve, reject) => {

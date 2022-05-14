@@ -43,22 +43,18 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
 
    const retrieveRestaurants = (loc: string) => {
       setIsLoading(true);
+      setRestaurants([]);
+
       setTimeout(() => {
-         //!
          restaurantsRequest(loc)
             .then(restaurant => {
                //! Mocking
-               const res = restaurant as
-                  | Antwerp
-                  | Toronto
-                  | Chicago
-                  | SanFrancisco;
 
                const transformedRestaurantResults = restaurantsTransform(
-                  res.results,
+                  restaurant.results,
                   mockImages
                );
-               //// Guarding against empty array in the UI
+               //? Guarding against empty array in the UI
                setRestaurants(transformedRestaurantResults);
             })
             .catch(err => {
@@ -74,7 +70,7 @@ export const RestaurantContextProvider: React.FC = ({ children }) => {
          const locationString = `${location.lat},${location.lng}`;
          retrieveRestaurants(locationString);
       }
-   }, []);
+   }, [location]);
 
    return (
       <RestaurantContext.Provider
