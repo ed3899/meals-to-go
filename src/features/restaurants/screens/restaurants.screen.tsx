@@ -1,6 +1,6 @@
 import React, { Fragment, useContext } from "react";
 
-import { Pressable } from "react-native";
+import { Pressable, TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
 import type { RestaurantsStackScreenPropsT } from "../../../../@types";
@@ -49,19 +49,17 @@ export default function RestaurantsScreen({
             data={restaurants}
             renderItem={({ item }) => {
                return (
-                  <Fragment>
-                     <Pressable
-                        onPress={() => navigation.navigate("RestaurantDetail")}
-                     >
-                        <Spacer position="bottom" size="large">
-                           <RestaurantInfoCard
-                              restaurant={
-                                 item as RestaurantContextT["restaurants"][0]
-                              }
-                           />
-                        </Spacer>
-                     </Pressable>
-                  </Fragment>
+                  <TouchableOpacity
+                     onPress={() => navigation.navigate("RestaurantDetail")}
+                  >
+                     <Spacer position="bottom" size="large">
+                        <RestaurantInfoCard
+                           restaurant={
+                              item as RestaurantContextT["restaurants"][0]
+                           }
+                        />
+                     </Spacer>
+                  </TouchableOpacity>
                );
             }}
             keyExtractor={(item: unknown) =>

@@ -1,11 +1,11 @@
 import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
+import { Text } from "react-native";
 
 import { RestaurantsStackParamListT } from "../../../@types";
 import RestaurantsScreen from "../../features/restaurants/screens/restaurants.screen";
 
-import { Text } from "react-native";
 
 const RestaurantStack =
    createNativeStackNavigator<RestaurantsStackParamListT>();
