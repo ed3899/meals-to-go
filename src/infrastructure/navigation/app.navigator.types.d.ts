@@ -5,10 +5,10 @@ import type {
 } from "@react-navigation/native";
 import type { NativeStackScreenProps } from "@react-navigation/native-stack";
 
-import { RestaurantsStackParamListT } from "../../../@types";
+import { RestaurantStackParamListT } from "../../../@types";
 
 export type RootTabParamList = {
-   Restaurants: NavigatorScreenParams<RestaurantsStackParamListT>;
+   Restaurants: NavigatorScreenParams<RestaurantStackParamListT>;
    Map: undefined;
    Settings: undefined;
 };
@@ -17,8 +17,8 @@ export type RootTabScreenProps<T extends keyof RootTabParamList> =
    BottomTabScreenProps<RootTabParamList, T>;
 
 export type RestaurantsStackScreenProps<
-   T extends keyof RestaurantsStackParamListT
+   T extends keyof RestaurantStackParamListT
 > = CompositeScreenProps<
-   NativeStackScreenProps<RestaurantsStackParamListT, T>,
+   NativeStackScreenProps<RestaurantStackParamListT, T>,
    RootTabScreenProps<keyof RootTabParamList>
 >;

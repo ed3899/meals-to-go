@@ -1,4 +1,4 @@
-export type RestaurantsStackParamList = {
+export type RestaurantsStackParamList<T> = {
    RestaurantsStack: undefined;
-   RestaurantDetail: undefined;
+   RestaurantDetail: { restaurant: T };
 };

@@ -1,9 +1,9 @@
-import React, { Fragment, useContext } from "react";
+import React, { useContext } from "react";
 
-import { Pressable, TouchableOpacity } from "react-native";
+import { TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
-import type { RestaurantsStackScreenPropsT } from "../../../../@types";
+import type { RestaurantsStackScreenPropsT , RestaurantInfoCardT } from "../../../../@types";
 
 import { RestaurantContextT } from "../../../../@types";
 import Spacer from "../../../components/spacer/spacer.component";
@@ -13,6 +13,8 @@ import { RestaurantContext } from "../../../services/restaurants/restaurant.cont
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import Search from "../components/search.component";
+
+
 
 const RestaurantList = styled.FlatList.attrs({
    contentContainerStyle: {
@@ -48,9 +50,15 @@ export default function RestaurantsScreen({
          <RestaurantList
             data={restaurants}
             renderItem={({ item }) => {
+               //! Type item as RestaurantInfoCard
+               const item_ = item as RestaurantInfoCardT;
                return (
                   <TouchableOpacity
-                     onPress={() => navigation.navigate("RestaurantDetail")}
+                     onPress={() =>
+                        navigation.navigate("RestaurantDetail", {
+                           restaurant: item_
+                        })
+                     }
                   >
                      <Spacer position="bottom" size="large">
                         <RestaurantInfoCard

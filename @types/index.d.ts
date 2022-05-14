@@ -21,6 +21,9 @@ import type {
 
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
+export type RestaurantStackParamListT =
+   RestaurantsStackParamList<RestaurantInfoCard>;
+
 export {
    RestaurantInfoCard as RestaurantInfoCardT,
    Mock,
@@ -30,7 +33,7 @@ export {
    LocationMock,
    LocationContext as LocationContextT,
    RootTabParamList as RootTabParamListT,
-   RestaurantsStackParamList as RestaurantsStackParamListT,
+   RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT
 };

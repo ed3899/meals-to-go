@@ -1,14 +1,13 @@
 import React from "react";
 
 import { createNativeStackNavigator } from "@react-navigation/native-stack";
-import { Text } from "react-native";
 
-import { RestaurantsStackParamListT } from "../../../@types";
+import { RestaurantStackParamListT } from "../../../@types";
+import RestaurantDetailScreen from "../../features/restaurants/screens/restaurant-detail.screen";
 import RestaurantsScreen from "../../features/restaurants/screens/restaurants.screen";
 
-
 const RestaurantStack =
-   createNativeStackNavigator<RestaurantsStackParamListT>();
+   createNativeStackNavigator<RestaurantStackParamListT>();
 
 const RestaurantsNavigator = () => {
    return (
@@ -19,8 +18,7 @@ const RestaurantsNavigator = () => {
          />
          <RestaurantStack.Screen
             name="RestaurantDetail"
-            //! Warning passing an inline function causes performance issues
-            component={() => <Text>Restaurant Detail</Text>}
+            component={RestaurantDetailScreen}
          />
       </RestaurantStack.Navigator>
    );
