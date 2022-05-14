@@ -1,3 +1,7 @@
+import type {
+   TabParamList,
+   BottomTabsScreenHelper
+} from "../src/infrastructure/navigation/app.navigator.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
 import type {
    LocationGeometry,
@@ -13,8 +17,6 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
-import { locations } from "../src/services/location/location.mock";
-
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
 export {
@@ -24,5 +26,7 @@ export {
    LocationGeometry,
    LocationResults,
    LocationMock,
-   LocationContext as LocationContextT
+   LocationContext as LocationContextT,
+   TabParamList as TabParamListT,
+   BottomTabsScreenHelper as BottomTabScreenHelperT
 };
