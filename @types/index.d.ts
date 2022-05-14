@@ -2,6 +2,7 @@ import type {
    TabParamList,
    BottomTabsScreenHelper
 } from "../src/infrastructure/navigation/app.navigator.types";
+import type { StackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
 import type {
    LocationGeometry,
@@ -28,5 +29,6 @@ export {
    LocationMock,
    LocationContext as LocationContextT,
    TabParamList as TabParamListT,
-   BottomTabsScreenHelper as BottomTabScreenHelperT
+   BottomTabsScreenHelper as BottomTabScreenHelperT,
+   StackParamList as StackParamListT
 };

@@ -10,7 +10,7 @@ import { Text } from "react-native";
 
 import { TabParamListT } from "../../../@types";
 import { SafeArea } from "../../components/utility/safe-area.component";
-import RestaurantsScreen from "../../features/restaurants/screens/restaurants.screen";
+import RestaurantsNavigator from "./restaurants.navigator";
 
 /**
  * @abstract Returns the icon based on the route and focused prop of the TabBarIcon
@@ -79,7 +79,7 @@ const AppNavigator = () => (
       <Tab.Navigator
          screenOptions={({ route }) => getBottomTabNavScreenOptions(route)}
       >
-         <Tab.Screen name="Restaurants" component={RestaurantsScreen} />
+         <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
          <Tab.Screen name="Map" component={Map} />
          <Tab.Screen name="Settings" component={Settings} />
       </Tab.Navigator>
