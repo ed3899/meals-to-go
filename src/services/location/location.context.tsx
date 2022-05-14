@@ -47,13 +47,15 @@ export const LocationContextProvider: React.FC = ({ children }) => {
    const onSearch = (searchKeyword: string) => {
       setIsLoading(true);
       setKeyword(searchKeyword);
+   };
 
+   useEffect(() => {
       // don't do anything
-      if (!searchKeyword.length) return;
+      if (!keyword.length) return;
 
       //! Fix once Google Api in place
-      locationRequest(searchKeyword)
-         ?.then(locationTransform)
+      locationRequest(keyword)
+         .then(locationTransform)
          .then(res => {
             setIsLoading(false);
 
@@ -67,11 +69,7 @@ export const LocationContextProvider: React.FC = ({ children }) => {
             });
          })
          .finally(() => setIsLoading(false));
-   };
-
-   //    useEffect(() => {
-   //       onSearch(keyword);
-   //    }, []);
+   }, [keyword]);
 
    return (
       <LocationContext.Provider
