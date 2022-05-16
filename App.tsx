@@ -5,7 +5,9 @@ import {
    useFonts as useOswald,
    Oswald_400Regular
 } from "@expo-google-fonts/oswald";
+import Constants from "expo-constants";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
+import { initializeApp, FirebaseOptions } from "firebase/app";
 
 import Navigation from "./src/infrastructure/navigation";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
@@ -13,20 +15,20 @@ import { FavouritesContextProvider } from "./src/services/favourites/favourites.
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurant.context";
 
-import { initializeApp, FirebaseOptions } from "firebase/app";
-
 const firebaseConfig: FirebaseOptions = {
-   apiKey: "api-key",
-   authDomain: "project-id.firebaseapp.com",
-   databaseURL: "https://project-id.firebaseio.com",
-   projectId: "project-id",
-   storageBucket: "project-id.appspot.com",
-   messagingSenderId: "sender-id",
-   appId: "app-id",
-   measurementId: "G-measurement-id"
+   // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
+   apiKey: Constants.manifest?.extra!.FIREBASE_API_KEY,
+   authDomain: "mealstogo-1b561.firebaseapp.com",
+   projectId: "mealstogo-1b561",
+   storageBucket: "mealstogo-1b561.appspot.com",
+   messagingSenderId: "726985536994",
+   appId: "1:726985536994:web:aae2d52a4cec08470db5bb"
 };
 
-export default function App() {
+// Initialize Firebase
+initializeApp(firebaseConfig);
+
+const App = () => {
    const [oswaldLoaded] = useOswald({
       Oswald_400Regular
    });
@@ -51,4 +53,6 @@ export default function App() {
          <ExpoStatusBar style="auto" />
       </Fragment>
    );
-}
+};
+
+export default App;
