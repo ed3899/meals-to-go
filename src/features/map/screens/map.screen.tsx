@@ -2,6 +2,7 @@ import React, { Fragment, useContext, useState, useEffect } from "react";
 
 import MapView, { Marker, Callout } from "react-native-maps";
 
+import { RootTabCompositeScreenPropsT } from "../../../../@types";
 import styled from "../../../infrastructure/theme";
 import { LocationContext } from "../../../services/location/location.context";
 import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
@@ -13,7 +14,7 @@ const Map = styled(MapView)`
    width: 100%;
 `;
 
-const MapScreen = () => {
+const MapScreen = ({ navigation }: RootTabCompositeScreenPropsT<"Map">) => {
    const {
       location = {
          lat: -1,
@@ -65,7 +66,13 @@ const MapScreen = () => {
                         longitude: restaurant.geometry.location.lng
                      }}
                   >
-                     <Callout>
+                     <Callout
+                        onPress={() =>
+                           navigation.navigate("RestaurantDetail", {
+                              restaurant: restaurant
+                           })
+                        }
+                     >
                         <MapCallout restaurant={restaurant} />
                      </Callout>
                   </Marker>

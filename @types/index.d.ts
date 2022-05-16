@@ -18,6 +18,7 @@ import type {
 } from "../src/services/restaurants/restaurant.service.types";
 
 import { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
+import { RootTabCompositeScreenProps } from "../src/infrastructure/navigation/app.navigator.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
 
@@ -39,17 +40,22 @@ export type LocationContextT = LocationContext<
 >;
 
 export {
+   //% Restaurant
    RestaurantInfoCard as RestaurantInfoCardT,
    Mock,
    MockApiResult,
+   //% Location
    LocationGeometry,
    LocationResults,
    LocationMock,
    LocationContextT,
+   //% Navigation
    RootTabParamList as RootTabParamListT,
+   RootTabCompositeScreenProps as RootTabCompositeScreenPropsT,
    RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
+   //% Components
    MapCallout_Component_PropsT,
    CompactRestaurantInfo_Component_PropsT
 };

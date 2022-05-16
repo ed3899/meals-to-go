@@ -16,6 +16,12 @@ export type RootTabParamList = {
 export type RootTabScreenProps<T extends keyof RootTabParamList> =
    BottomTabScreenProps<RootTabParamList, T>;
 
+export type RootTabCompositeScreenProps<T extends keyof RootTabParamList> =
+   CompositeScreenProps<
+      NativeStackScreenProps<RestaurantStackParamListT, T>,
+      RootTabScreenProps<keyof RootTabParamList>
+   >;
+
 export type RestaurantsStackScreenProps<
    T extends keyof RestaurantStackParamListT
 > = CompositeScreenProps<
