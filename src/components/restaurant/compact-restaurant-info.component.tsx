@@ -27,14 +27,14 @@ const Item = styled.View`
 
 const CompactRestaurantInfo: React.FC<
    CompactRestaurantInfo_Component_PropsT
-> = ({ restaurant }) => {
+> = ({ restaurant, isMap }) => {
    const isAndroid = Platform.OS === "android";
 
    console.log({ restaurant });
 
    return (
       <Item>
-         {isAndroid ? (
+         {isAndroid && isMap ? (
             <CompactWebview source={{ uri: restaurant.photo }} />
          ) : (
             <CompactImage source={{ uri: restaurant.photo }} />
