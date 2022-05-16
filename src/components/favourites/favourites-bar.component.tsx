@@ -39,7 +39,10 @@ const FavouritesBar: React.FC<FavouritesBar_Component_PropsT> = ({
                            })
                         }
                      >
-                        <CompactRestaurantInfo restaurant={restaurant} />
+                        <CompactRestaurantInfo
+                           restaurant={restaurant}
+                           isMap={false}
+                        />
                      </TouchableOpacity>
                   </Spacer>
                );

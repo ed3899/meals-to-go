@@ -1,21 +1,10 @@
-import React, {
-   useEffect,
-   createContext,
-   useState,
-   useContext
-} from "react";
+import React, { useEffect, createContext, useState, useContext } from "react";
 
 import type { RestaurantContextT } from "../../../@types";
 
 import { LocationContext } from "../location/location.context";
 import { mockImages } from "./mock";
 import { restaurantsRequest, restaurantsTransform } from "./restaurant.service";
-import {
-   Antwerp,
-   Chicago,
-   SanFrancisco,
-   Toronto
-} from "./restaurant.service.types";
 
 export const RestaurantContext = createContext<RestaurantContextT>({
    restaurants: [],

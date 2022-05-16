@@ -30,8 +30,6 @@ const CompactRestaurantInfo: React.FC<
 > = ({ restaurant, isMap }) => {
    const isAndroid = Platform.OS === "android";
 
-   console.log({ restaurant });
-
    return (
       <Item>
          {isAndroid && isMap ? (
