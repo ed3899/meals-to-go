@@ -9,9 +9,22 @@ import { StatusBar as ExpoStatusBar } from "expo-status-bar";
 
 import Navigation from "./src/infrastructure/navigation";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
+import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurant.context";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
+
+import { initializeApp, FirebaseOptions } from "firebase/app";
+
+const firebaseConfig: FirebaseOptions = {
+   apiKey: "api-key",
+   authDomain: "project-id.firebaseapp.com",
+   databaseURL: "https://project-id.firebaseio.com",
+   projectId: "project-id",
+   storageBucket: "project-id.appspot.com",
+   messagingSenderId: "sender-id",
+   appId: "app-id",
+   measurementId: "G-measurement-id"
+};
 
 export default function App() {
    const [oswaldLoaded] = useOswald({
