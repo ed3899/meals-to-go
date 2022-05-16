@@ -1,11 +1,13 @@
 import React from "react";
 
+import { View } from "react-native";
 import { SvgXml } from "react-native-svg";
 
 import type { RestaurantInfoCardT } from "../../../../@types";
 
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
+import Favourite from "../../../components/favourite/favourite.component";
 import Spacer from "../../../components/spacer/spacer.component";
 import { CustomText } from "../../../components/typography/text.component";
 import { range, genRandomString } from "../../../utils";
@@ -41,12 +43,16 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
 
    return (
       <RestaurantCard elevation={5}>
-         <RestaurantCardCover
-            key={name}
-            source={{
-               uri: photo
-            }}
-         />
+         <View>
+            <Favourite />
+            <RestaurantCardCover
+               key={name}
+               source={{
+                  uri: photo
+               }}
+            />
+         </View>
+
          <Info>
             <CustomText variant="label">{name}</CustomText>
             <Section>
