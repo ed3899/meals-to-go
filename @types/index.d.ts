@@ -19,7 +19,12 @@ import type {
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
 
+import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
+
 type RestaurantInfoCard = ReturnType<typeof RestaurantsTransformFn>[0];
+
+type MapCallout_Component_PropsT =
+   MapCallout_Component_Props<RestaurantInfoCard>;
 
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
@@ -41,5 +46,6 @@ export {
    RootTabParamList as RootTabParamListT,
    RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,
-   RestaurantsStackScreenProps as RestaurantsStackScreenPropsT
+   RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
+   MapCallout_Component_PropsT
 };
