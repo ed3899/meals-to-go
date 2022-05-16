@@ -45,7 +45,7 @@
       "import/order": [
          "warn",
          {
-            "groups": ["builtin", "external", "internal","type"],
+            "groups": ["builtin", "external", "internal", "type"],
             "pathGroups": [
                {
                   "pattern": "react",
@@ -60,6 +60,8 @@
                "caseInsensitive": true
             }
          }
-      ]
+      ],
+      "no-empty-function": "off",
+      "@typescript-eslint/no-empty-function": [1]
    }
 }

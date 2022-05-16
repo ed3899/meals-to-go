@@ -64,7 +64,8 @@ export const restaurantsTransform = <T extends MockApiResult[]>(
             restaurant.opening_hours && restaurant.opening_hours.open_now,
          isClosedTemporarily:
             restaurant.business_status === "CLOSED_TEMPORARILY",
-         geometry: restaurant.geometry
+         geometry: restaurant.geometry,
+         placeId: restaurant.place_id
       };
    });
 
