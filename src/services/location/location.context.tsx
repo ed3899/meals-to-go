@@ -9,7 +9,17 @@ export const LocationContext = createContext<LocationContextT>({
    error: { isError: false, msg: "" },
    location: {
       lat: 0,
-      lng: 0
+      lng: 0,
+      viewport: {
+         northeast: {
+            lat: 0,
+            lng: 0
+         },
+         southwest: {
+            lat: 0,
+            lng: 0
+         }
+      }
    },
    search: () => "", //!
    keyword: ""
@@ -25,7 +35,17 @@ export const LocationContextProvider: React.FC = ({ children }) => {
     */
    const [location, setLocation] = useState<LocationContextT["location"]>({
       lng: 4.402464,
-      lat: 51.219448
+      lat: 51.219448,
+      viewport: {
+         northeast: {
+            lat: 0,
+            lng: 0
+         },
+         southwest: {
+            lat: 0,
+            lng: 0
+         }
+      }
    });
 
    const [keyword, setKeyword] =

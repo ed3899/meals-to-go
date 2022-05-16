@@ -19,10 +19,16 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
+import { locationTransform } from "../src/services/location/location.service";
+
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
 export type RestaurantStackParamListT =
    RestaurantsStackParamList<RestaurantInfoCard>;
+
+export type LocationContextT = LocationContext<
+   ReturnType<typeof locationTransform>
+>;
 
 export {
    RestaurantInfoCard as RestaurantInfoCardT,
@@ -31,7 +37,7 @@ export {
    LocationGeometry,
    LocationResults,
    LocationMock,
-   LocationContext as LocationContextT,
+   LocationContextT,
    RootTabParamList as RootTabParamListT,
    RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,

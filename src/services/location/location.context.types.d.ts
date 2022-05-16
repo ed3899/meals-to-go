@@ -1,11 +1,7 @@
-export type LocationContext = {
+export type LocationContext<T> = {
    isLoading: boolean;
    error: { isError: boolean; msg: unknown };
-   location: {
-      lat: number;
-      lng: number;
-   };
-
+   location: T;
    search: (searchKeyword: string) => void;
    keyword: string;
 };

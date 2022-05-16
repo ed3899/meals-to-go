@@ -5,7 +5,7 @@ import { locations } from "./location.mock";
 /**
  * @abstract Requests location from MockApi or external if indicated in the second parameter
  * @description Test locations: antwerp , "san francisco", chicago, toronto
- * @default 
+ * @default
  * @param searchTerm
  * @returns
  */
@@ -40,5 +40,5 @@ export const locationTransform = (locationResults: LocationResults) => {
       location: { lat, lng }
    } = geometry;
 
-   return { lat, lng };
+   return { lat, lng, viewport: geometry.viewport };
 };
