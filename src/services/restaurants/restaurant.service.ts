@@ -48,7 +48,7 @@ const getRandomMockImage = (mockImages: string[]) => {
 export const restaurantsTransform = <T extends MockApiResult[]>(
    results: T,
    mockImages?: string[]
-): RestaurantInfoCardT[] => {
+) => {
    if (!results) return [];
 
    const thereAreMockImages = mockImages && mockImages.length > 0;
@@ -63,7 +63,8 @@ export const restaurantsTransform = <T extends MockApiResult[]>(
          isOpenNow:
             restaurant.opening_hours && restaurant.opening_hours.open_now,
          isClosedTemporarily:
-            restaurant.business_status === "CLOSED_TEMPORARILY"
+            restaurant.business_status === "CLOSED_TEMPORARILY",
+         geometry: restaurant.geometry
       };
    });
 

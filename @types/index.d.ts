@@ -10,16 +10,16 @@ import type {
    LocationResults,
    LocationMock
 } from "../src/services/location/location.mock.types";
-import type {
-   RestaurantInfoCard,
-   RestaurantContextHelper
-} from "../src/services/restaurants/restaurant.context.types";
+import type { RestaurantContextHelper } from "../src/services/restaurants/restaurant.context.types";
 import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
-import { locationTransform } from "../src/services/location/location.service";
+import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
+import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
+
+type RestaurantInfoCard = ReturnType<typeof RestaurantsTransformFn>[0];
 
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
@@ -27,7 +27,7 @@ export type RestaurantStackParamListT =
    RestaurantsStackParamList<RestaurantInfoCard>;
 
 export type LocationContextT = LocationContext<
-   ReturnType<typeof locationTransform>
+   ReturnType<typeof LocationTransformFn>
 >;
 
 export {
