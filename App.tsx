@@ -1,13 +1,15 @@
-import React, { Fragment } from "react";
+import React, { Fragment, useState, useEffect } from "react";
 
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import {
    useFonts as useOswald,
    Oswald_400Regular
 } from "@expo-google-fonts/oswald";
+// eslint-disable-next-line import/no-named-as-default
 import Constants from "expo-constants";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-import { initializeApp, FirebaseOptions } from "firebase/app";
+import * as firebaseApps from "firebase/app";
+import * as firebaseAuth from "firebase/auth";
 
 import Navigation from "./src/infrastructure/navigation";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
@@ -15,7 +17,7 @@ import { FavouritesContextProvider } from "./src/services/favourites/favourites.
 import { LocationContextProvider } from "./src/services/location/location.context";
 import { RestaurantContextProvider } from "./src/services/restaurants/restaurant.context";
 
-const firebaseConfig: FirebaseOptions = {
+const firebaseConfig: firebaseApps.FirebaseOptions = {
    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
    apiKey: Constants.manifest?.extra!.FIREBASE_API_KEY,
    authDomain: "mealstogo-1b561.firebaseapp.com",
@@ -25,10 +27,29 @@ const firebaseConfig: FirebaseOptions = {
    appId: "1:726985536994:web:aae2d52a4cec08470db5bb"
 };
 
-// Initialize Firebase
-initializeApp(firebaseConfig);
+// // Initialize Firebase
+
+if (!firebaseApps.getApps().length) {
+   const app = firebaseApps.initializeApp(firebaseConfig);
+   const auth = firebaseAuth.getAuth(app);
+}
 
 const App = () => {
+   const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+   // useEffect(() => {
+   //    setTimeout(() => {
+   //       firebaseAuth
+   //          .signInWithEmailAndPassword(auth, "mo@binni.io", "test123")
+   //          .then(user => {
+   //             console.log(user);
+   //             setIsAuthenticated(true);
+   //          })
+   //          .catch(e => {
+   //             console.log(e);
+   //          });
+   //    }, 2000);
+   // }, []);
    const [oswaldLoaded] = useOswald({
       Oswald_400Regular
    });
@@ -38,6 +59,7 @@ const App = () => {
    });
 
    if (!oswaldLoaded || !latoLoaded) return <Fragment></Fragment>;
+   if (!isAuthenticated) return <Fragment></Fragment>;
 
    return (
       <Fragment>
