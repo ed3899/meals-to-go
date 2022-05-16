@@ -5,6 +5,8 @@ import { SvgXml } from "react-native-svg";
 
 import type { RestaurantInfoCardT } from "../../../../@types";
 
+import type { RestaurantInfoCard_Component_PropsT } from "../../../../@types";
+
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
 import Favourite from "../../../components/favourite/favourite.component";
@@ -22,12 +24,9 @@ import {
    Icon
 } from "./restaurant-info-card.styles";
 
-type RestaurantInfoPropsT = {
-   restaurant?: Partial<RestaurantInfoCardT>;
-};
-
-const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
-   restaurant = {}
+const RestaurantInfoCard: React.FC<RestaurantInfoCard_Component_PropsT> = ({
+   //? Should I make it optional?
+   restaurant
 }) => {
    const {
       name = "Some restaurant",
@@ -44,7 +43,7 @@ const RestaurantInfoCard: React.FC<RestaurantInfoPropsT> = ({
    return (
       <RestaurantCard elevation={5}>
          <View>
-            <Favourite />
+            <Favourite restaurant={restaurant} />
             <RestaurantCardCover
                key={name}
                source={{

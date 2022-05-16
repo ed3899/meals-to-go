@@ -1,10 +1,12 @@
+import type { Favourite_Component_Props } from "../src/components/favourite/favourite.component.types";
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type {
    RootTabParamList,
    RootTabScreenProps,
-   RestaurantsStackScreenProps
-, RootTabCompositeScreenProps } from "../src/infrastructure/navigation/app.navigator.types";
+   RestaurantsStackScreenProps,
+   RootTabCompositeScreenProps
+} from "../src/infrastructure/navigation/app.navigator.types";
 import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
 import type { FavouritesContext } from "../src/services/favourites/favourites.context.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
@@ -18,7 +20,7 @@ import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
-
+import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
 
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
@@ -32,6 +34,12 @@ export type MapCallout_Component_PropsT =
 
 export type CompactRestaurantInfo_Component_PropsT =
    CompactRestaurantInfo_Component_Props<RestaurantInfoCardT>;
+
+export type Favourite_Component_PropsT =
+   Favourite_Component_Props<RestaurantInfoCardT>;
+
+export type RestaurantInfoCard_Component_PropsT =
+   RestaurantInfoCard_Component_Props<RestaurantInfoCardT>;
 
 //% Context
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCardT>;
