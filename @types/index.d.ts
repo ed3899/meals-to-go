@@ -1,6 +1,7 @@
-import type { Favourite_Component_Props } from "../src/components/favourite/favourite.component.types";
+import type { Favourite_Component_Props } from "../src/components/favourites/favourite.component.types";
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
+import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
 import type {
    RootTabParamList,
    RootTabScreenProps,
@@ -20,8 +21,8 @@ import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
-import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
 
+import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
 
@@ -70,5 +71,6 @@ export {
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
    //% Components
-   CompactRestaurantInfo_Component_PropsT
+   CompactRestaurantInfo_Component_PropsT,
+   RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT
 };

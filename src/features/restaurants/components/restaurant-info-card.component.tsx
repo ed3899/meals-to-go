@@ -3,13 +3,11 @@ import React from "react";
 import { View } from "react-native";
 import { SvgXml } from "react-native-svg";
 
-import type { RestaurantInfoCardT } from "../../../../@types";
-
 import type { RestaurantInfoCard_Component_PropsT } from "../../../../@types";
 
 import open from "../../../../assets/open";
 import star from "../../../../assets/star";
-import Favourite from "../../../components/favourite/favourite.component";
+import Favourite from "../../../components/favourites/favourite.component";
 import Spacer from "../../../components/spacer/spacer.component";
 import { CustomText } from "../../../components/typography/text.component";
 import { range, genRandomString } from "../../../utils";

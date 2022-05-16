@@ -1,11 +1,15 @@
-import React, { useContext } from "react";
+import React, { useContext, useState } from "react";
 
 import { TouchableOpacity } from "react-native";
 import { ActivityIndicator, Colors } from "react-native-paper";
 
-import type { RestaurantsStackScreenPropsT , RestaurantInfoCardT } from "../../../../@types";
+import type {
+   RestaurantsStackScreenPropsT,
+   RestaurantInfoCardT
+} from "../../../../@types";
 
 import { RestaurantContextT } from "../../../../@types";
+import FavouritesBar from "../../../components/favourites/favourites-bar.component";
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import styled from "../../../infrastructure/theme";
@@ -13,8 +17,6 @@ import { RestaurantContext } from "../../../services/restaurants/restaurant.cont
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
 import Search from "../components/search.component";
-
-
 
 const RestaurantList = styled.FlatList.attrs({
    contentContainerStyle: {
@@ -36,6 +38,7 @@ export default function RestaurantsScreen({
    navigation
 }: RestaurantsStackScreenPropsT<"RestaurantsStack">) {
    const { isLoading, restaurants } = useContext(RestaurantContext);
+   const [isToggled, setIsToggled] = useState(false);
 
    return (
       <SafeArea>
@@ -45,7 +48,12 @@ export default function RestaurantsScreen({
             </LoadingContainer>
          )}
 
-         <Search />
+         <Search
+            isFavouritesToggled={isToggled}
+            onFavouritesToggled={() => setIsToggled(!isToggled)}
+         />
+
+         {isToggled && <FavouritesBar />}
 
          <RestaurantList
             data={restaurants}
