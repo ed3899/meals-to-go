@@ -1,4 +1,5 @@
 import type { Favourite_Component_Props } from "../src/components/favourites/favourite.component.types";
+import type { FavouritesBar_Component_Props } from "../src/components/favourites/favourites-bar.component.types";
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
@@ -21,6 +22,7 @@ import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
+import type { CompositeNavigationProp } from "@react-navigation/native";
 
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
@@ -41,6 +43,11 @@ export type Favourite_Component_PropsT =
 
 export type RestaurantInfoCard_Component_PropsT =
    RestaurantInfoCard_Component_Props<RestaurantInfoCardT>;
+
+export type FavouritesBar_Component_PropsT = FavouritesBar_Component_Props<
+   RestaurantInfoCardT,
+   RootTabCompositeScreenProps<"Restaurants">["navigation"]["navigate"]
+>;
 
 //% Context
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCardT>;

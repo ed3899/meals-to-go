@@ -13,6 +13,7 @@ import FavouritesBar from "../../../components/favourites/favourites-bar.compone
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
 import styled from "../../../infrastructure/theme";
+import { FavouritesContext } from "../../../services/favourites/favourites.context";
 import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
@@ -38,6 +39,7 @@ export default function RestaurantsScreen({
    navigation
 }: RestaurantsStackScreenPropsT<"RestaurantsStack">) {
    const { isLoading, restaurants } = useContext(RestaurantContext);
+   const { favourites } = useContext(FavouritesContext);
    const [isToggled, setIsToggled] = useState(false);
 
    return (
@@ -53,7 +55,12 @@ export default function RestaurantsScreen({
             onFavouritesToggled={() => setIsToggled(!isToggled)}
          />
 
-         {isToggled && <FavouritesBar />}
+         {isToggled && (
+            <FavouritesBar
+               favouriteRestaurants={favourites}
+               onNavigate={navigation.navigate}
+            />
+         )}
 
          <RestaurantList
             data={restaurants}

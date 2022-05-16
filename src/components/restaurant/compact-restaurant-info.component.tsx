@@ -30,7 +30,7 @@ const CompactRestaurantInfo: React.FC<
 > = ({ restaurant }) => {
    const isAndroid = Platform.OS === "android";
 
-   const Image = isAndroid ? CompactWebview : CompactImage;
+   console.log({ restaurant });
 
    return (
       <Item>
