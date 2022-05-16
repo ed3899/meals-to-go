@@ -1,3 +1,4 @@
+import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type {
    RootTabParamList,
    RootTabScreenProps,
@@ -16,15 +17,17 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 
+import { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
-
-import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 
 type RestaurantInfoCard = ReturnType<typeof RestaurantsTransformFn>[0];
 
 type MapCallout_Component_PropsT =
    MapCallout_Component_Props<RestaurantInfoCard>;
+
+type CompactRestaurantInfo_Component_PropsT =
+   CompactRestaurantInfo_Component_Props<RestaurantInfoCard>;
 
 export type RestaurantContextT = RestaurantContextHelper<RestaurantInfoCard>;
 
@@ -47,5 +50,6 @@ export {
    RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
-   MapCallout_Component_PropsT
+   MapCallout_Component_PropsT,
+   CompactRestaurantInfo_Component_PropsT
 };

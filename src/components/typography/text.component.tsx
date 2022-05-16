@@ -44,9 +44,10 @@ const variants = {
 };
 
 type TextVariantPropsT = {
-   variant?: keyof typeof variants;
+   variant: keyof typeof variants;
+   center: boolean;
 };
-export const CustomText = styled(Text)<TextVariantPropsT>`
+export const CustomText = styled(Text)<Partial<TextVariantPropsT>>`
    ${({ theme }) => defaultTextStyles(theme)}
    ${({ variant = "body", theme }) => variants[variant](theme)}
 `;

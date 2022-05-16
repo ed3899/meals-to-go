@@ -1,13 +1,10 @@
 import React from "react";
 
 import { MapCallout_Component_PropsT } from "../../../../@types";
-import styled from "../../../infrastructure/theme";
-
-
-const MyText = styled.Text``;
+import CompactRestaurantInfo from "../../../components/restaurant/compact-restaurant-info.component";
 
 const MapCallout: React.FC<MapCallout_Component_PropsT> = ({ restaurant }) => {
-   return <MyText>{restaurant.name}</MyText>;
+   return <CompactRestaurantInfo restaurant={restaurant} />;
 };
 
 export default MapCallout;
