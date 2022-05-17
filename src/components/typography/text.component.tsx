@@ -1,7 +1,9 @@
 import { Text } from "react-native";
 import { DefaultTheme } from "styled-components/native";
 
+import { CustomText_Component_PropsT } from "../../../@types";
 import styled from "../../infrastructure/theme";
+
 
 const defaultTextStyles = (theme: DefaultTheme) => `
     font-family: ${theme.fonts.body};
@@ -35,7 +37,7 @@ const label = (theme: DefaultTheme) => `
     font-weight: ${theme.fontWeights.medium};
 `;
 
-const variants = {
+export const variants = {
    body,
    label,
    caption,
@@ -43,11 +45,7 @@ const variants = {
    hint
 };
 
-type TextVariantPropsT = {
-   variant: keyof typeof variants;
-   center: boolean;
-};
-export const CustomText = styled(Text)<Partial<TextVariantPropsT>>`
+export const CustomText = styled(Text)<CustomText_Component_PropsT>`
    ${({ theme }) => defaultTextStyles(theme)}
    ${({ variant = "body", theme }) => variants[variant](theme)}
 `;
