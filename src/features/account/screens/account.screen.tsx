@@ -1,20 +1,24 @@
 import React from "react";
 
+import LottieView from "lottie-react-native";
+
 import Spacer from "../../../components/spacer/spacer.component";
 
-import { Title } from "../components/account.styles";
+import styled from "../../../infrastructure/theme";
 
 import type { AccountScreen_ComponentT } from "../../../../@types";
 
 import AccountBackground, {
    AccountContainer,
-   AuthButton
+   AuthButton,
+   StyledLottieView
 } from "../components/account.styles";
 
 const AccountScreen: AccountScreen_ComponentT = ({ navigation }) => {
    return (
       <AccountBackground>
-         <Title>Meals To Go</Title>
+         <StyledLottieView />
+
          <AccountContainer>
             <AuthButton
                icon="lock-open-outline"

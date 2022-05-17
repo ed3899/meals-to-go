@@ -1,5 +1,6 @@
 import React from "react";
 
+import LottieView from "lottie-react-native";
 import { Button, TextInput } from "react-native-paper";
 
 import { CustomText } from "../../../components/typography/text.component";
@@ -47,6 +48,19 @@ export const ErrorContainer = styled.View`
    align-self: center;
    margin-top: ${props => props.theme.space[2]};
    margin-bottom: ${props => props.theme.space[2]};
+`;
+
+export const StyledLottieView = styled(LottieView).attrs({
+   key: "animation",
+   autoPlay: true,
+   loop: true,
+   resizeMode: "cover",
+   source: require("../../../../assets/watermelon.json")
+})`
+   width: 100%;
+   height: 60%;
+   position: absolute;
+   top: 50;
 `;
 
 export default AccountBackground;
