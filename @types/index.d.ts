@@ -10,6 +10,7 @@ import type {
    RootTabCompositeScreenProps
 } from "../src/infrastructure/navigation/app.navigator.types";
 import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
+import type { AuthenticationContext } from "../src/services/authentication/authentication.context.types";
 import type { FavouritesContext } from "../src/services/favourites/favourites.context.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
 import type {
@@ -22,7 +23,7 @@ import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
-import type { CompositeNavigationProp } from "@react-navigation/native";
+import type { UserCredential } from "firebase/auth";
 
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
@@ -57,6 +58,8 @@ export type LocationContextT = LocationContext<
 >;
 
 export type FavouritesContextT = FavouritesContext<RestaurantInfoCardT>;
+
+export type AuthenticationContextT = AuthenticationContext<UserCredential>;
 
 //% Navigation
 export type RestaurantStackParamListT =
