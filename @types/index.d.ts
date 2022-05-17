@@ -3,7 +3,10 @@ import type { FavouritesBar_Component_Props } from "../src/components/favourites
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
-import type { AccountNavigator_Stack_ParamList } from "../src/infrastructure/navigation/account.navigator.types";
+import type {
+   AccountNavigator_Stack_ParamList,
+   AccountNavigator_Stack_ScreenProps
+} from "../src/infrastructure/navigation/account.navigator.types";
 import type {
    RootTabParamList,
    RootTabScreenProps,
@@ -25,6 +28,8 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 import type { UserCredential } from "firebase/auth";
+
+import type { AccountScreen_Component } from "../src/features/account/screens/account.screen.types";
 
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
@@ -82,7 +87,9 @@ export {
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
    AccountNavigator_Stack_ParamList as AccountNavigator_Stack_ParamListT,
+   AccountNavigator_Stack_ScreenProps as AccountNavigator_Stack_ScreenPropsT,
    //% Components
    CompactRestaurantInfo_Component_PropsT,
-   RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT
+   RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT,
+   AccountScreen_Component as AccountScreen_ComponentT
 };
