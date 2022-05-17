@@ -11,9 +11,6 @@ import Navigation from "./src/infrastructure/navigation";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
 import { AuthenticationContextProvider } from "./src/services/authentication/authentication.context";
 import firebaseInit from "./src/services/authentication/authentication.service";
-import { FavouritesContextProvider } from "./src/services/favourites/favourites.context";
-import { LocationContextProvider } from "./src/services/location/location.context";
-import { RestaurantContextProvider } from "./src/services/restaurants/restaurant.context";
 
 // Initialize Firebase
 firebaseInit();
@@ -33,13 +30,7 @@ const App = () => {
       <Fragment>
          <ThemeProvider theme={theme}>
             <AuthenticationContextProvider>
-               <FavouritesContextProvider>
-                  <LocationContextProvider>
-                     <RestaurantContextProvider>
-                        <Navigation />
-                     </RestaurantContextProvider>
-                  </LocationContextProvider>
-               </FavouritesContextProvider>
+               <Navigation />
             </AuthenticationContextProvider>
          </ThemeProvider>
          <ExpoStatusBar style="auto" />

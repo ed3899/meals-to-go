@@ -1,6 +1,8 @@
-import React, { createContext, useState, useEffect } from "react";
+import React, { createContext, useState, useEffect, useContext } from "react";
 
 import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import AuthenticationContext from "../authentication/authentication.context";
 
 import { RestaurantInfoCardT, FavouritesContextT } from "../../../@types";
 
@@ -13,20 +15,25 @@ export const FavouritesContext = createContext<FavouritesContextT>({
 });
 
 export const FavouritesContextProvider: React.FC = ({ children }) => {
+   const { user } = useContext(AuthenticationContext);
+
    const [favourites, setFavourites] = useState<RestaurantInfoCardT[]>([]);
 
-   const saveFavourites = async (favourites: RestaurantInfoCardT[]) => {
+   const saveFavourites = async (
+      favourites: RestaurantInfoCardT[],
+      uid: string
+   ) => {
       try {
          const jsonValue = JSON.stringify(favourites);
-         await AsyncStorage.setItem("@favourites", jsonValue);
+         await AsyncStorage.setItem(`@favourites-${uid}`, jsonValue);
       } catch (error) {
          console.error(`Error storing ${error}`);
       }
    };
 
-   const loadFavourites = async () => {
+   const loadFavourites = async (uid: string) => {
       try {
-         const value = await AsyncStorage.getItem("@favourites");
+         const value = await AsyncStorage.getItem(`@favourites-${uid}`);
          if (value !== null) {
             setFavourites(JSON.parse(value));
          }
@@ -36,12 +43,16 @@ export const FavouritesContextProvider: React.FC = ({ children }) => {
    };
 
    useEffect(() => {
-      loadFavourites();
-   }, []);
+      if (user && user.uid) {
+         loadFavourites(user.uid);
+      }
+   }, [user]);
 
    useEffect(() => {
-      saveFavourites(favourites);
-   }, [favourites]);
+      if (user && user.uid && favourites.length) {
+         saveFavourites(favourites, user.uid);
+      }
+   }, [favourites, user]);
 
    const add = (restaurant: RestaurantInfoCardT) => {
       setFavourites([...favourites, restaurant]);

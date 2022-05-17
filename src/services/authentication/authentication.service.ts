@@ -73,3 +73,4 @@ export const onAuthStateChangeWrapper = (
 export const signOutWrapper = async () => await signOut(auth);
 
 export default firebaseInit;
+

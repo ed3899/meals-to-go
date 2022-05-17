@@ -1,5 +1,5 @@
-export type AuthenticationContext<U, T> = {
-   user: U | T | undefined;
+export type AuthenticationContext<U> = {
+   user: U | undefined;
    isLoading: boolean;
    isAuthenticated: boolean;
    error: string | undefined;

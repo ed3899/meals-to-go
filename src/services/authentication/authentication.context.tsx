@@ -30,17 +30,8 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
    const [user, setUser] = useState<AuthenticationContextT["user"]>();
    const [error, setError] = useState<AuthenticationContextT["error"]>();
 
-   console.group("authentication.context.tsx_AuthenticationContextProvider");
-   console.log(`user : ${user}`);
-   console.log(`!!user : ${!!user}`);
-   console.groupEnd();
-
    useEffect(() => {
       const authUnsubcribe = onAuthStateChangeWrapper(user => {
-         console.group("authentication.context.tsx_onAuthStateChangeWrapper");
-         console.log(`user : ${user}`);
-         console.log(`!!user : ${!!user}`);
-         console.groupEnd();
          if (user) {
             setUser(user);
          }
@@ -67,8 +58,8 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       setIsLoading(true);
 
       loginRequest(email, password)
-         .then(user => {
-            setUser(user);
+         .then(userCredential => {
+            setUser(userCredential.user);
             setIsLoading(false);
          })
          .catch((error: FirebaseError) => {
@@ -98,8 +89,8 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       }
 
       registrationRequest(email, password)
-         .then(createdUser => {
-            setUser(createdUser);
+         .then(createdUserCredential => {
+            setUser(createdUserCredential.user);
             setIsLoading(false);
          })
          .catch((error: FirebaseError) => {
@@ -108,10 +99,14 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
          });
    };
 
+   /**
+    * @abstract Gets called when the user signs out
+    */
    const onLogout = () => {
-      console.log("onLogout");
-      setUser(undefined);
-      signOutWrapper();
+      signOutWrapper().then(() => {
+         setUser(undefined);
+         setError(undefined);
+      });
    };
 
    return (

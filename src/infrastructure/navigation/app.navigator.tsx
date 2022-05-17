@@ -8,11 +8,14 @@ import {
 import { RouteProp } from "@react-navigation/native";
 import { Text, Button } from "react-native";
 
-import AuthenticationContext from "../../services/authentication/authentication.context";
+import { RestaurantContextProvider } from "../../services/restaurants/restaurant.context";
+import { LocationContextProvider } from "../../services/location/location.context";
+import { FavouritesContextProvider } from "../../services/favourites/favourites.context";
 
 import { RootTabParamListT } from "../../../@types";
 import { SafeArea } from "../../components/utility/safe-area.component";
 import MapScreen from "../../features/map/screens/map.screen";
+import AuthenticationContext from "../../services/authentication/authentication.context";
 import RestaurantsNavigator from "./restaurants.navigator";
 
 /**
@@ -77,13 +80,24 @@ const Settings = () => {
 };
 
 const AppNavigator = () => (
-   <Tab.Navigator
-      screenOptions={({ route }) => getBottomTabNavScreenOptions(route)}
-   >
-      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-      <Tab.Screen name="Map" component={MapScreen} />
-      <Tab.Screen name="Settings" component={Settings} />
-   </Tab.Navigator>
+   <FavouritesContextProvider>
+      <LocationContextProvider>
+         <RestaurantContextProvider>
+            <Tab.Navigator
+               screenOptions={({ route }) =>
+                  getBottomTabNavScreenOptions(route)
+               }
+            >
+               <Tab.Screen
+                  name="Restaurants"
+                  component={RestaurantsNavigator}
+               />
+               <Tab.Screen name="Map" component={MapScreen} />
+               <Tab.Screen name="Settings" component={Settings} />
+            </Tab.Navigator>
+         </RestaurantContextProvider>
+      </LocationContextProvider>
+   </FavouritesContextProvider>
 );
 
 export default AppNavigator;
