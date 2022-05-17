@@ -5,7 +5,11 @@ import {
    Auth,
    getAuth,
    signInWithEmailAndPassword,
-   createUserWithEmailAndPassword
+   createUserWithEmailAndPassword,
+   onAuthStateChanged,
+   NextOrObserver,
+   User,
+   signOut
 } from "firebase/auth";
 
 const firebaseConfig = {
@@ -50,5 +54,22 @@ export const loginRequest = async (email: string, password: string) =>
  */
 export const registrationRequest = async (email: string, password: string) =>
    createUserWithEmailAndPassword(auth, email, password);
+
+/**
+ * @abstract Wrapper that contain the auth object
+ * @requires firebaseInit to had been called
+ * @param nextOrObserver
+ * @returns
+ */
+export const onAuthStateChangeWrapper = (
+   nextOrObserver: NextOrObserver<User>
+) => onAuthStateChanged(auth, nextOrObserver);
+
+/**
+ * @abstract Wrapper that contains the auth objectr
+ * @requires firebaseInit to had been called
+ * @returns
+ */
+export const signOutWrapper = async () => await signOut(auth);
 
 export default firebaseInit;

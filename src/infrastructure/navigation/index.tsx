@@ -9,6 +9,10 @@ import AppNavigator from "./app.navigator";
 const Navigation = () => {
    const { isAuthenticated } = useContext(AuthenticationContext);
 
+   console.group("index.tsx_Navigation");
+   console.log({ isAuthenticated });
+   console.groupEnd();
+
    return (
       <NavigationContainer>
          {isAuthenticated ? <AppNavigator /> : <AccountNavigator />}

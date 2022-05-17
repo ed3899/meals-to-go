@@ -1,9 +1,15 @@
+import React, { useState, createContext, useEffect } from "react";
+
 import { FirebaseError } from "firebase/app";
-import React, { useState, createContext } from "react";
 
 import type { AuthenticationContextT } from "../../../@types";
 
-import { loginRequest, registrationRequest } from "./authentication.service";
+import {
+   onAuthStateChangeWrapper,
+   loginRequest,
+   registrationRequest,
+   signOutWrapper
+} from "./authentication.service";
 
 const AuthenticationContext = createContext<AuthenticationContextT>({
    user: undefined,
@@ -13,7 +19,9 @@ const AuthenticationContext = createContext<AuthenticationContextT>({
    // eslint-disable-next-line @typescript-eslint/no-empty-function
    onLogin: () => {},
    // eslint-disable-next-line @typescript-eslint/no-empty-function
-   onRegister: () => {}
+   onRegister: () => {},
+   // eslint-disable-next-line @typescript-eslint/no-empty-function
+   onLogout: () => {}
 });
 
 export const AuthenticationContextProvider: React.FC = ({ children }) => {
@@ -21,6 +29,25 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       useState<AuthenticationContextT["isAuthenticated"]>(false);
    const [user, setUser] = useState<AuthenticationContextT["user"]>();
    const [error, setError] = useState<AuthenticationContextT["error"]>();
+
+   console.group("authentication.context.tsx_AuthenticationContextProvider");
+   console.log(`user : ${user}`);
+   console.log(`!!user : ${!!user}`);
+   console.groupEnd();
+
+   useEffect(() => {
+      const authUnsubcribe = onAuthStateChangeWrapper(user => {
+         console.group("authentication.context.tsx_onAuthStateChangeWrapper");
+         console.log(`user : ${user}`);
+         console.log(`!!user : ${!!user}`);
+         console.groupEnd();
+         if (user) {
+            setUser(user);
+         }
+      });
+
+      return authUnsubcribe;
+   }, []);
 
    /**
     * @abstract Is False when we don't have a user
@@ -64,7 +91,7 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       repeatedPassword: string
    ) => {
       setIsLoading(true);
-      
+
       if (password !== repeatedPassword) {
          setError("Error: Passwords do not match");
          return;
@@ -81,12 +108,19 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
          });
    };
 
+   const onLogout = () => {
+      console.log("onLogout");
+      setUser(undefined);
+      signOutWrapper();
+   };
+
    return (
       <AuthenticationContext.Provider
          value={{
             user: user,
             onLogin: onLogin,
             onRegister: onRegister,
+            onLogout: onLogout,
             isLoading: isLoading,
             isAuthenticated: isAuthenticated(),
             error: error

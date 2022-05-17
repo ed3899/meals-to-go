@@ -1,4 +1,4 @@
-import React, { Fragment, useState } from "react";
+import React, { Fragment } from "react";
 
 import { useFonts as useLato, Lato_400Regular } from "@expo-google-fonts/lato";
 import {

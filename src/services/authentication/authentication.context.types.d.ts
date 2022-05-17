@@ -1,5 +1,5 @@
-export type AuthenticationContext<U> = {
-   user: U | undefined;
+export type AuthenticationContext<U, T> = {
+   user: U | T | undefined;
    isLoading: boolean;
    isAuthenticated: boolean;
    error: string | undefined;
@@ -9,4 +9,5 @@ export type AuthenticationContext<U> = {
       password: string,
       repeatedPassword: string
    ) => void;
+   onLogout: () => void;
 };

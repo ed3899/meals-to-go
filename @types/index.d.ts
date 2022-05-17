@@ -30,7 +30,7 @@ import type {
    Mock,
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
-import type { UserCredential } from "firebase/auth";
+import type { User, UserCredential } from "firebase/auth";
 
 import { RegisterScreen_Component } from "../src/features/account/screens/register.screen.types";
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
@@ -68,7 +68,7 @@ export type LocationContextT = LocationContext<
 
 export type FavouritesContextT = FavouritesContext<RestaurantInfoCardT>;
 
-export type AuthenticationContextT = AuthenticationContext<UserCredential>;
+export type AuthenticationContextT = AuthenticationContext<UserCredential,User>;
 
 //% Navigation
 export type RestaurantStackParamListT =

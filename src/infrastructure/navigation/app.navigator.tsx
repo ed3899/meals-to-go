@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 
 import { Ionicons } from "@expo/vector-icons";
 import {
@@ -6,7 +6,9 @@ import {
    BottomTabNavigationOptions
 } from "@react-navigation/bottom-tabs";
 import { RouteProp } from "@react-navigation/native";
-import { Text } from "react-native";
+import { Text, Button } from "react-native";
+
+import AuthenticationContext from "../../services/authentication/authentication.context";
 
 import { RootTabParamListT } from "../../../@types";
 import { SafeArea } from "../../components/utility/safe-area.component";
@@ -64,11 +66,15 @@ export function getBottomTabNavScreenOptions(
 
 const Tab = createBottomTabNavigator<RootTabParamListT>();
 
-const Settings = () => (
-   <SafeArea>
-      <Text>Settings</Text>
-   </SafeArea>
-);
+const Settings = () => {
+   const { onLogout } = useContext(AuthenticationContext);
+   return (
+      <SafeArea>
+         <Text>Settings</Text>
+         <Button title="logout" onPress={() => onLogout()} />
+      </SafeArea>
+   );
+};
 
 const AppNavigator = () => (
    <Tab.Navigator
