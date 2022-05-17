@@ -4,4 +4,9 @@ export type AuthenticationContext<U> = {
    isAuthenticated: boolean;
    error: string | undefined;
    onLogin: (email: string, password: string) => void;
+   onRegister: (
+      email: string,
+      password: string,
+      repeatedPassword: string
+   ) => void;
 };

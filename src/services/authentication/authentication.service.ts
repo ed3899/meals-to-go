@@ -1,7 +1,12 @@
 // eslint-disable-next-line import/no-named-as-default
 import Constants from "expo-constants";
 import { initializeApp, getApps, FirebaseApp } from "firebase/app";
-import { Auth, getAuth, signInWithEmailAndPassword } from "firebase/auth";
+import {
+   Auth,
+   getAuth,
+   signInWithEmailAndPassword,
+   createUserWithEmailAndPassword
+} from "firebase/auth";
 
 const firebaseConfig = {
    // eslint-disable-next-line @typescript-eslint/no-non-null-assertion
@@ -34,5 +39,16 @@ const firebaseInit = () => {
  */
 export const loginRequest = async (email: string, password: string) =>
    signInWithEmailAndPassword(auth, email, password);
+
+/**
+ * @abstract Registers a new user in firebase
+ * @requires firebaseInit to have been called before
+ * @param email
+ * @param password
+ * @param repeatedPassword
+ * @returns
+ */
+export const registrationRequest = async (email: string, password: string) =>
+   createUserWithEmailAndPassword(auth, email, password);
 
 export default firebaseInit;

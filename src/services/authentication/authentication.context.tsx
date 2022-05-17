@@ -3,7 +3,7 @@ import React, { useState, createContext } from "react";
 
 import type { AuthenticationContextT } from "../../../@types";
 
-import { loginRequest } from "./authentication.service";
+import { loginRequest, registrationRequest } from "./authentication.service";
 
 const AuthenticationContext = createContext<AuthenticationContextT>({
    user: undefined,
@@ -11,7 +11,9 @@ const AuthenticationContext = createContext<AuthenticationContextT>({
    isLoading: false,
    error: undefined,
    // eslint-disable-next-line @typescript-eslint/no-empty-function
-   onLogin: () => {}
+   onLogin: () => {},
+   // eslint-disable-next-line @typescript-eslint/no-empty-function
+   onRegister: () => {}
 });
 
 export const AuthenticationContextProvider: React.FC = ({ children }) => {
@@ -21,11 +23,16 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
    const [error, setError] = useState<AuthenticationContextT["error"]>();
 
    /**
-    * @abstract False when we don't have a user
+    * @abstract Is False when we don't have a user
     * @returns
     */
    const isAuthenticated = () => !!user;
 
+   /**
+    * @abstract Gets called when user logs in
+    * @param email
+    * @param password
+    */
    const onLogin: AuthenticationContextT["onLogin"] = (
       email: string,
       password: string
@@ -44,11 +51,40 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
          .finally(() => setIsLoading(false));
    };
 
+   /**
+    * @abstract Gets called when a new user signs up
+    * @param email
+    * @param password
+    * @param repeatedPassword
+    * @returns
+    */
+   const onRegister = (
+      email: string,
+      password: string,
+      repeatedPassword: string
+   ) => {
+      if (password !== repeatedPassword) {
+         setError("Error: Passwords do not match");
+         return;
+      }
+
+      registrationRequest(email, password)
+         .then(createdUser => {
+            setUser(createdUser);
+            setIsLoading(false);
+         })
+         .catch((error: FirebaseError) => {
+            setIsLoading(false);
+            setError(error.message);
+         });
+   };
+
    return (
       <AuthenticationContext.Provider
          value={{
             user: user,
             onLogin: onLogin,
+            onRegister: onRegister,
             isLoading: isLoading,
             isAuthenticated: isAuthenticated(),
             error: error

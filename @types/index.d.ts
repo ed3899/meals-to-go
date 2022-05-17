@@ -32,6 +32,7 @@ import type {
 } from "../src/services/restaurants/restaurant.service.types";
 import type { UserCredential } from "firebase/auth";
 
+import { RegisterScreen_Component } from "../src/features/account/screens/register.screen.types";
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
 import { restaurantsTransform as RestaurantsTransformFn } from "../src/services/restaurants/restaurant.service";
@@ -95,5 +96,6 @@ export {
    CompactRestaurantInfo_Component_PropsT,
    RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT,
    AccountScreen_Component as AccountScreen_ComponentT,
-   LoginScreen_Component_Props as LoginScreen_ComponentT
+   LoginScreen_Component_Props as LoginScreen_ComponentT,
+   RegisterScreen_Component as RegisterScreen_ComponentT
 };
