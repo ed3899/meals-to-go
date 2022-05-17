@@ -5,9 +5,15 @@ import {
    useFonts as useOswald,
    Oswald_400Regular
 } from "@expo-google-fonts/oswald";
+import Constants from "expo-constants";
 import { StatusBar as ExpoStatusBar } from "expo-status-bar";
-
-import { initializeApp } from "firebase/app";
+import { initializeApp, getApps, FirebaseApp } from "firebase/app";
+import {
+   Auth,
+   getAuth,
+   onAuthStateChanged,
+   signInWithEmailAndPassword
+} from "firebase/auth";
 
 import Navigation from "./src/infrastructure/navigation";
 import { ThemeProvider, theme } from "./src/infrastructure/theme";
@@ -20,7 +26,7 @@ import { RestaurantContextProvider } from "./src/services/restaurants/restaurant
 
 // Your web app's Firebase configuration
 const firebaseConfig = {
-   apiKey: "",
+   apiKey: Constants.manifest?.extra!.FIREBASE_API_KEY,
    authDomain: "mealstogo-1b561.firebaseapp.com",
    projectId: "mealstogo-1b561",
    storageBucket: "mealstogo-1b561.appspot.com",
@@ -28,11 +34,25 @@ const firebaseConfig = {
    appId: "1:726985536994:web:aae2d52a4cec08470db5bb"
 };
 
+let app: FirebaseApp, auth: Auth;
+
+if (!getApps().length) {
+   app = initializeApp(firebaseConfig);
+   auth = getAuth(app);
+}
 // Initialize Firebase
-const app = initializeApp(firebaseConfig);
 
 const App = () => {
    const [isAuthenticated, setIsAuthenticated] = useState(false);
+
+   useEffect(() => {
+      signInWithEmailAndPassword(auth, "mo@binni.io", "test123")
+         .then(user => {
+            console.log(user);
+            setIsAuthenticated(true);
+         })
+         .catch(error => console.log(error));
+   }, []);
 
    const [oswaldLoaded] = useOswald({
       Oswald_400Regular
@@ -43,6 +63,7 @@ const App = () => {
    });
 
    if (!oswaldLoaded || !latoLoaded) return <Fragment></Fragment>;
+   if (!isAuthenticated) return <Fragment></Fragment>;
 
    return (
       <Fragment>
