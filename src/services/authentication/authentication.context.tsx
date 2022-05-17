@@ -63,6 +63,8 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       password: string,
       repeatedPassword: string
    ) => {
+      setIsLoading(true);
+      
       if (password !== repeatedPassword) {
          setError("Error: Passwords do not match");
          return;
