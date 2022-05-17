@@ -5,7 +5,7 @@ import {
    createBottomTabNavigator,
    BottomTabNavigationOptions
 } from "@react-navigation/bottom-tabs";
-import { NavigationContainer, RouteProp } from "@react-navigation/native";
+import { RouteProp } from "@react-navigation/native";
 import { Text } from "react-native";
 
 import { RootTabParamListT } from "../../../@types";
@@ -71,15 +71,13 @@ const Settings = () => (
 );
 
 const AppNavigator = () => (
-   <NavigationContainer>
-      <Tab.Navigator
-         screenOptions={({ route }) => getBottomTabNavScreenOptions(route)}
-      >
-         <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
-         <Tab.Screen name="Map" component={MapScreen} />
-         <Tab.Screen name="Settings" component={Settings} />
-      </Tab.Navigator>
-   </NavigationContainer>
+   <Tab.Navigator
+      screenOptions={({ route }) => getBottomTabNavScreenOptions(route)}
+   >
+      <Tab.Screen name="Restaurants" component={RestaurantsNavigator} />
+      <Tab.Screen name="Map" component={MapScreen} />
+      <Tab.Screen name="Settings" component={Settings} />
+   </Tab.Navigator>
 );
 
 export default AppNavigator;

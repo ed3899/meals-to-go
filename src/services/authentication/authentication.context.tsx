@@ -6,15 +6,15 @@ import { loginRequest } from "./authentication.service";
 
 const AuthenticationContext = createContext<AuthenticationContextT>({
    user: undefined,
-   isLoading: false,
+   isAuthenticated: false,
    error: undefined,
    // eslint-disable-next-line @typescript-eslint/no-empty-function
    onLogin: () => {}
 });
 
 export const AuthenticationContextProvider: React.FC = ({ children }) => {
-   const [isLoading, setIsLoading] =
-      useState<AuthenticationContextT["isLoading"]>(false);
+   const [isAuthenticated, setIsAuthenticated] =
+      useState<AuthenticationContextT["isAuthenticated"]>(false);
    const [user, setUser] = useState<AuthenticationContextT["user"]>();
    const [error, setError] = useState<AuthenticationContextT["error"]>();
 
@@ -22,18 +22,18 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
       email: string,
       password: string
    ) => {
-      setIsLoading(true);
+      setIsAuthenticated(true);
 
       loginRequest(email, password)
          .then(user => {
             setUser(user);
-            setIsLoading(false);
+            setIsAuthenticated(false);
          })
          .catch(error => {
-            setIsLoading(false);
+            setIsAuthenticated(false);
             setError(error);
          })
-         .finally(() => setIsLoading(false));
+         .finally(() => setIsAuthenticated(false));
    };
 
    return (
@@ -41,7 +41,7 @@ export const AuthenticationContextProvider: React.FC = ({ children }) => {
          value={{
             user: user,
             onLogin: onLogin,
-            isLoading: isLoading,
+            isAuthenticated: isAuthenticated,
             error: error
          }}
       >

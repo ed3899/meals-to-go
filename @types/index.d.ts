@@ -3,6 +3,7 @@ import type { FavouritesBar_Component_Props } from "../src/components/favourites
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
+import type { AccountNavigator_Stack_ParamList } from "../src/infrastructure/navigation/account.navigator.types";
 import type {
    RootTabParamList,
    RootTabScreenProps,
@@ -80,6 +81,7 @@ export {
    RestaurantStackParamListT,
    RootTabScreenProps as RootTabScreenPropsT,
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
+   AccountNavigator_Stack_ParamList as AccountNavigator_Stack_ParamListT,
    //% Components
    CompactRestaurantInfo_Component_PropsT,
    RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT
