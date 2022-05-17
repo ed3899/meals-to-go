@@ -6,13 +6,17 @@ import AccountBackground, {
    AuthInput
 } from "../components/account.styles";
 
+import { ErrorContainer, Title } from "../components/account.styles";
+
 import { CustomText } from "../../../components/typography/text.component";
 
 import Spacer from "../../../components/spacer/spacer.component";
 
+import { LoginScreen_ComponentT } from "../../../../@types";
+
 import AuthenticationContext from "../../../services/authentication/authentication.context";
 
-const LoginScreen = () => {
+const LoginScreen: LoginScreen_ComponentT = ({ navigation }) => {
    const [email, setEmail] = useState("");
    const [password, setPassword] = useState("");
 
@@ -20,6 +24,7 @@ const LoginScreen = () => {
 
    return (
       <AccountBackground>
+         <Title>Meals To Go</Title>
          <AccountContainer>
             <AuthInput
                label="E-mail"
@@ -43,8 +48,12 @@ const LoginScreen = () => {
                }
             />
             <Spacer size="large" position="bottom" />
-            
-            {error && <CustomText variant="error">{error}</CustomText>}
+
+            {error && (
+               <ErrorContainer>
+                  <CustomText variant="error">{error}</CustomText>
+               </ErrorContainer>
+            )}
 
             <Spacer size="large" position="top">
                <AuthButton
@@ -56,6 +65,12 @@ const LoginScreen = () => {
                </AuthButton>
             </Spacer>
          </AccountContainer>
+
+         <Spacer position="top" size="large" />
+
+         <AuthButton mode="contained" onPress={() => navigation.goBack()}>
+            Back
+         </AuthButton>
       </AccountBackground>
    );
 };

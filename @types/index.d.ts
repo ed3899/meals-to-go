@@ -3,6 +3,7 @@ import type { FavouritesBar_Component_Props } from "../src/components/favourites
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
 import type { CustomText_Component_Props } from "../src/components/typography/text.component.types";
 import type { AccountScreen_Component } from "../src/features/account/screens/account.screen.types";
+import type { LoginScreen_Component_Props } from "../src/features/account/screens/login.screen.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
 import type {
@@ -30,8 +31,6 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 import type { UserCredential } from "firebase/auth";
-
-import type { FirebaseError } from "firebase/app";
 
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
 import { locationTransform as LocationTransformFn } from "../src/services/location/location.service";
@@ -95,5 +94,6 @@ export {
    CustomText_Component_Props as CustomText_Component_PropsT,
    CompactRestaurantInfo_Component_PropsT,
    RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT,
-   AccountScreen_Component as AccountScreen_ComponentT
+   AccountScreen_Component as AccountScreen_ComponentT,
+   LoginScreen_Component_Props as LoginScreen_ComponentT
 };

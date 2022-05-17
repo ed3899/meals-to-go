@@ -2,6 +2,7 @@ import React from "react";
 
 import { Button, TextInput } from "react-native-paper";
 
+import { CustomText } from "../../../components/typography/text.component";
 import styled from "../../../infrastructure/theme";
 import { colors } from "../../../infrastructure/theme/colors";
 
@@ -34,6 +35,18 @@ export const AuthButton = styled(Button).attrs({
 
 export const AuthInput = styled(TextInput)`
    width: 300px;
+`;
+
+export const Title = styled(CustomText)`
+   font-size: 30px;
+`;
+
+export const ErrorContainer = styled.View`
+   max-width: 300px;
+   align-items: center;
+   align-self: center;
+   margin-top: ${props => props.theme.space[2]};
+   margin-bottom: ${props => props.theme.space[2]};
 `;
 
 export default AccountBackground;
