@@ -1,7 +1,7 @@
 import React, { useRef, useState, useEffect } from "react";
 
 import { Camera, CameraType } from "expo-camera";
-import { View } from "react-native";
+import { Button } from "react-native-paper";
 
 import { CustomText } from "../../../components/typography/text.component";
 import styled from "../../../infrastructure/theme";
@@ -11,9 +11,30 @@ const ProfileCamera = styled(Camera)`
    height: 100%;
 `;
 
+const CameraContainer = styled.View`
+   width: 100%;
+   height: 100%;
+`;
+
+const CameraButton = styled(Button).attrs({
+   mode: "contained",
+   icon: "camera"
+})`
+   position: absolute;
+   top: 525px;
+   left: 140px;
+`;
+
 const CameraScreen = () => {
    const [hasPermission, setHasPermission] = useState(false);
    const cameraRef = useRef<Camera | null>();
+
+   const snap = async () => {
+      if (cameraRef && cameraRef.current) {
+         const photo = await cameraRef.current.takePictureAsync();
+         console.log(photo);
+      }
+   };
 
    useEffect(() => {
       (async () => {
@@ -27,10 +48,18 @@ const CameraScreen = () => {
    }
 
    return (
-      <ProfileCamera
-         ref={camera => (cameraRef.current = camera)}
-         type={CameraType.front}
-      ></ProfileCamera>
+      <CameraContainer>
+         <ProfileCamera
+            ref={camera => (cameraRef.current = camera)}
+            ratio={"16:9"}
+            type={CameraType.front}
+            onCameraReady={() => {
+               console.log("Camera Ready");
+            }}
+         ></ProfileCamera>
+
+         <CameraButton onPress={snap}>Snap!</CameraButton>
+      </CameraContainer>
    );
 };
 
