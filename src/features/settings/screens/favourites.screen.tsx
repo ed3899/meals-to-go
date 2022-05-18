@@ -21,6 +21,7 @@ const NoFavouritesArea = styled(SafeArea)`
    align-items: center;
    justify-content: center;
 `;
+
 const FavouritesScreen: Favourites_ScreenT = ({ navigation }) => {
    const { favourites } = useContext(FavouritesContext);
 
