@@ -1,3 +1,4 @@
+import type { FadeAnimation } from "../src/components/animations/fade.animation.types";
 import type { Favourite_Component_Props } from "../src/components/favourites/favourite.component.types";
 import type { FavouritesBar_Component_Props } from "../src/components/favourites/favourites-bar.component.types";
 import type { CompactRestaurantInfo_Component_Props } from "../src/components/restaurant/compact-restaurant-info.component.types";
@@ -17,8 +18,9 @@ import type {
    RootTabParamList,
    RootTabScreenProps,
    RestaurantsStackScreenProps,
-   RootTabCompositeScreenProps
-, Settings_Stack_Screen_Combo_Props } from "../src/infrastructure/navigation/app.navigator.types";
+   RootTabCompositeScreenProps,
+   Settings_Stack_Screen_Combo_Props
+} from "../src/infrastructure/navigation/app.navigator.types";
 import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
 import type { Settings_Stack_ParamList } from "../src/infrastructure/navigation/settings.navigator.types";
 import type { AuthenticationContext } from "../src/services/authentication/authentication.context.types";
@@ -35,7 +37,6 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 import type { User } from "firebase/auth";
-
 
 import { RegisterScreen_Component } from "../src/features/account/screens/register.screen.types";
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
@@ -107,5 +108,7 @@ export {
    LoginScreen_Component_Props as LoginScreen_ComponentT,
    RegisterScreen_Component as RegisterScreen_ComponentT,
    Settings_Screen as Settings_ScreenT,
-   Favourites_Screen as Favourites_ScreenT
+   Favourites_Screen as Favourites_ScreenT,
+   //# Animation
+   FadeAnimation as FadeAnimationT
 };

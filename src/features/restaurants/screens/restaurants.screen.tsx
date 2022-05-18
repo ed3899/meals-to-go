@@ -9,6 +9,7 @@ import type {
 } from "../../../../@types";
 
 import { RestaurantContextT } from "../../../../@types";
+import FadeInView from "../../../components/animations/fade.animation";
 import FavouritesBar from "../../../components/favourites/favourites-bar.component";
 import Spacer from "../../../components/spacer/spacer.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
@@ -70,13 +71,15 @@ export default function RestaurantsScreen({
                         })
                      }
                   >
-                     <Spacer position="bottom" size="large">
+                     <Spacer position="bottom" size="large" />
+
+                     <FadeInView >
                         <RestaurantInfoCard
                            restaurant={
                               item as RestaurantContextT["restaurants"][0]
                            }
                         />
-                     </Spacer>
+                     </FadeInView>
                   </TouchableOpacity>
                );
             }}
