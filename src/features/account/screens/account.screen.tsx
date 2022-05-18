@@ -1,10 +1,6 @@
 import React from "react";
 
-import LottieView from "lottie-react-native";
-
 import Spacer from "../../../components/spacer/spacer.component";
-
-import styled from "../../../infrastructure/theme";
 
 import type { AccountScreen_ComponentT } from "../../../../@types";
 

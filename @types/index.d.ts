@@ -6,17 +6,20 @@ import type { AccountScreen_Component } from "../src/features/account/screens/ac
 import type { LoginScreen_Component_Props } from "../src/features/account/screens/login.screen.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
+import type { Settings_Screen } from "../src/features/settings/screens/settings.screen.types";
 import type {
    AccountNavigator_Stack_ParamList,
    AccountNavigator_Stack_ScreenProps
 } from "../src/infrastructure/navigation/account.navigator.types";
 import type {
+   Settings_Stack_Screen_Props,
    RootTabParamList,
    RootTabScreenProps,
    RestaurantsStackScreenProps,
    RootTabCompositeScreenProps
 } from "../src/infrastructure/navigation/app.navigator.types";
 import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
+import type { Settings_Stack_ParamList } from "../src/infrastructure/navigation/settings.navigator.types";
 import type { AuthenticationContext } from "../src/services/authentication/authentication.context.types";
 import type { FavouritesContext } from "../src/services/favourites/favourites.context.types";
 import type { LocationContext } from "../src/services/location/location.context.types";
@@ -91,11 +94,14 @@ export {
    RestaurantsStackScreenProps as RestaurantsStackScreenPropsT,
    AccountNavigator_Stack_ParamList as AccountNavigator_Stack_ParamListT,
    AccountNavigator_Stack_ScreenProps as AccountNavigator_Stack_ScreenPropsT,
+   Settings_Stack_ParamList as Settings_Stack_ParamListT,
+   Settings_Stack_Screen_Props as Settings_Stack_Screen_PropsT,
    //% Components
    CustomText_Component_Props as CustomText_Component_PropsT,
    CompactRestaurantInfo_Component_PropsT,
    RestaurantSearch_Component_Props as RestaurantSearch_Component_PropsT,
    AccountScreen_Component as AccountScreen_ComponentT,
    LoginScreen_Component_Props as LoginScreen_ComponentT,
-   RegisterScreen_Component as RegisterScreen_ComponentT
+   RegisterScreen_Component as RegisterScreen_ComponentT,
+   Settings_Screen as Settings_ScreenT
 };
