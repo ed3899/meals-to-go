@@ -4,6 +4,7 @@ import { createNativeStackNavigator } from "@react-navigation/native-stack";
 
 import type { Settings_Stack_ParamListT } from "../../../@types";
 
+import CameraScreen from "../../features/settings/screens/camera.screen";
 import FavouritesScreen from "../../features/settings/screens/favourites.screen";
 import SettingsScreen from "../../features/settings/screens/settings.screen";
 
@@ -23,6 +24,11 @@ const SettingsNavigator = () => {
          <SettingsStack.Screen
             name="Favourites"
             component={FavouritesScreen}
+         ></SettingsStack.Screen>
+
+         <SettingsStack.Screen
+            name="Camera"
+            component={CameraScreen}
          ></SettingsStack.Screen>
       </SettingsStack.Navigator>
    );

@@ -1,16 +1,15 @@
 /* eslint-disable react/prop-types */
 import React, { useContext } from "react";
 
+import { TouchableOpacity } from "react-native";
 import { List, Avatar } from "react-native-paper";
-
-import styled from "../../../infrastructure/theme";
 
 import type { Settings_ScreenT } from "../../../../@types";
 
-import { CustomText } from "../../../components/typography/text.component";
 import Spacer from "../../../components/spacer/spacer.component";
-
+import { CustomText } from "../../../components/typography/text.component";
 import { SafeArea } from "../../../components/utility/safe-area.component";
+import styled from "../../../infrastructure/theme";
 import AuthenticationContext from "../../../services/authentication/authentication.context";
 
 const SettingsItem = styled(List.Item)`
@@ -27,11 +26,13 @@ const SettingsScreen: Settings_ScreenT = ({ navigation }) => {
    return (
       <SafeArea>
          <AvatarContainer>
-            <Avatar.Icon
-               size={180}
-               icon="human"
-               style={{ backgroundColor: "#2182BD" }}
-            />
+            <TouchableOpacity onPress={() => navigation.navigate("Camera")}>
+               <Avatar.Icon
+                  size={180}
+                  icon="human"
+                  style={{ backgroundColor: "#2182BD" }}
+               />
+            </TouchableOpacity>
 
             <Spacer position="top" size="large" />
 
