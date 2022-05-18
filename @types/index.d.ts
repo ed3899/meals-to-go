@@ -9,6 +9,7 @@ import type { MapCallout_Component_Props } from "../src/features/map/components/
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
 import type { Favourites_Screen } from "../src/features/settings/screens/favourites.screen.types";
 import type { Settings_Screen } from "../src/features/settings/screens/settings.screen.types";
+import type { Camera_Screen } from "../src/features/settings/screens/camera.screen.types";
 import type {
    AccountNavigator_Stack_ParamList,
    AccountNavigator_Stack_ScreenProps
@@ -109,6 +110,7 @@ export {
    RegisterScreen_Component as RegisterScreen_ComponentT,
    Settings_Screen as Settings_ScreenT,
    Favourites_Screen as Favourites_ScreenT,
+   Camera_Screen as Camera_ScreenT,
    //# Animation
    FadeAnimation as FadeAnimationT
 };

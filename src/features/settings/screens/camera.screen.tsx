@@ -1,7 +1,14 @@
-import React, { useRef, useState, useEffect } from "react";
+/* eslint-disable react/prop-types */
+import React, { useRef, useState, useEffect, useContext } from "react";
 
 import { Camera, CameraType } from "expo-camera";
 import { Button } from "react-native-paper";
+
+import AsyncStorage from "@react-native-async-storage/async-storage";
+
+import AuthenticationContext from "../../../services/authentication/authentication.context";
+
+import { Camera_ScreenT } from "../../../../@types";
 
 import { CustomText } from "../../../components/typography/text.component";
 import styled from "../../../infrastructure/theme";
@@ -25,14 +32,18 @@ const CameraButton = styled(Button).attrs({
    left: 140px;
 `;
 
-const CameraScreen = () => {
+const CameraScreen: Camera_ScreenT = ({ navigation }) => {
    const [hasPermission, setHasPermission] = useState(false);
+
    const cameraRef = useRef<Camera | null>();
 
+   const { user } = useContext(AuthenticationContext);
+
    const snap = async () => {
-      if (cameraRef && cameraRef.current) {
+      if (cameraRef && cameraRef.current && user) {
          const photo = await cameraRef.current.takePictureAsync();
-         console.log(photo);
+         AsyncStorage.setItem(`${user.uid}-photo`, photo.uri);
+         navigation.goBack();
       }
    };
 
