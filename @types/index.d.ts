@@ -6,6 +6,7 @@ import type { AccountScreen_Component } from "../src/features/account/screens/ac
 import type { LoginScreen_Component_Props } from "../src/features/account/screens/login.screen.types";
 import type { MapCallout_Component_Props } from "../src/features/map/components/map.callout.component.types";
 import type { RestaurantInfoCard_Component_Props } from "../src/features/restaurants/components/restaurant-info-card.component.types";
+import type { Favourites_Screen } from "../src/features/settings/screens/favourites.screen.types";
 import type { Settings_Screen } from "../src/features/settings/screens/settings.screen.types";
 import type {
    AccountNavigator_Stack_ParamList,
@@ -17,7 +18,7 @@ import type {
    RootTabScreenProps,
    RestaurantsStackScreenProps,
    RootTabCompositeScreenProps
-} from "../src/infrastructure/navigation/app.navigator.types";
+, Settings_Stack_Screen_Combo_Props } from "../src/infrastructure/navigation/app.navigator.types";
 import type { RestaurantsStackParamList } from "../src/infrastructure/navigation/restaurants.navigator.types";
 import type { Settings_Stack_ParamList } from "../src/infrastructure/navigation/settings.navigator.types";
 import type { AuthenticationContext } from "../src/services/authentication/authentication.context.types";
@@ -34,6 +35,7 @@ import type {
    MockApiResult
 } from "../src/services/restaurants/restaurant.service.types";
 import type { User } from "firebase/auth";
+
 
 import { RegisterScreen_Component } from "../src/features/account/screens/register.screen.types";
 import { RestaurantSearch_Component_Props } from "../src/features/restaurants/components/search.component.types";
@@ -96,6 +98,7 @@ export {
    AccountNavigator_Stack_ScreenProps as AccountNavigator_Stack_ScreenPropsT,
    Settings_Stack_ParamList as Settings_Stack_ParamListT,
    Settings_Stack_Screen_Props as Settings_Stack_Screen_PropsT,
+   Settings_Stack_Screen_Combo_Props as Settings_Stack_Screen_Combo_PropsT,
    //% Components
    CustomText_Component_Props as CustomText_Component_PropsT,
    CompactRestaurantInfo_Component_PropsT,
@@ -103,5 +106,6 @@ export {
    AccountScreen_Component as AccountScreen_ComponentT,
    LoginScreen_Component_Props as LoginScreen_ComponentT,
    RegisterScreen_Component as RegisterScreen_ComponentT,
-   Settings_Screen as Settings_ScreenT
+   Settings_Screen as Settings_ScreenT,
+   Favourites_Screen as Favourites_ScreenT
 };

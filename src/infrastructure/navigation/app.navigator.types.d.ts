@@ -28,7 +28,7 @@ export type RootTabCompositeScreenProps<T extends keyof RootTabParamList> =
       RootTabScreenProps<keyof RootTabParamList>
    >;
 
-//% Allows the children to have access to their parent
+//% Allows the children of Restaurants_Stack_Navigator to have access to their parent
 export type RestaurantsStackScreenProps<
    T extends keyof RestaurantStackParamListT
 > = CompositeScreenProps<
@@ -40,6 +40,7 @@ export type RestaurantsStackScreenProps<
    RootTabScreenProps<keyof RootTabParamList>
 >;
 
+//% Allows the children of Settings_Stack_Navigator to have access to their parent
 export type Settings_Stack_Screen_Props<
    T extends keyof Settings_Stack_ParamListT
 > = CompositeScreenProps<
@@ -49,6 +50,21 @@ export type Settings_Stack_Screen_Props<
       "Settings_Stack_Navigator"
    >,
    RootTabScreenProps<keyof RootTabParamList>
+>;
+
+//% Allows the children of Settings_Stack_Navigator to have access to their multiple parents
+export type Settings_Stack_Screen_Combo_Props<
+   T extends keyof Settings_Stack_ParamListT
+> = CompositeScreenProps<
+   NativeStackScreenProps<
+      Settings_Stack_ParamListT,
+      T,
+      "Settings_Stack_Navigator_Combo"
+   >,
+   CompositeScreenProps<
+      NativeStackScreenProps<RestaurantStackParamListT>,
+      RootTabScreenProps<RootTabParamList>
+   >
 >;
 
 declare global {

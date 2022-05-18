@@ -17,13 +17,8 @@ import { FavouritesContext } from "../../../services/favourites/favourites.conte
 import { RestaurantContext } from "../../../services/restaurants/restaurant.context";
 import { genRandomString } from "../../../utils";
 import RestaurantInfoCard from "../components/restaurant-info-card.component";
+import RestaurantList from "../components/restaurant-list.styles";
 import Search from "../components/search.component";
-
-const RestaurantList = styled.FlatList.attrs({
-   contentContainerStyle: {
-      padding: 16
-   }
-})``;
 
 const Loading = styled(ActivityIndicator)`
    margin-left: -25px;
